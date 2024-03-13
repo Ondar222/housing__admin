@@ -8,9 +8,9 @@ import { Button, ThemeProvider, createTheme } from '@mui/material'
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
-    primary: { main: '#F1FF4C', light: '#E3F2FD', dark: '#CCD750' },
-    secondary: { main: '#F19DFF', light: '#F3E5F5', dark: '#AB47BC' },
+    mode: 'light',
+    primary: { main: '#007AFF', light: '#E3F2FD', dark: '#4CD7F6' },
+    secondary: { main: '#4CD7F6', light: '#F3E5F5', dark: '#AB47BC' },
     error: { main: '#FF285C', light: '#E57373', dark: '#D32F2F' },
     warning: { main: '#FFAB08', light: '#FFB74D', dark: '#F57C00' },
     info: { main: '#04B1FF', light: '#4FC3F7', dark: '#0288D1' },
