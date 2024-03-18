@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import styles from './CurrentList.module.css'
 
 function Item(props: BoxProps) {
     const { sx, ...other } = props;
@@ -49,25 +50,21 @@ const currencies = [
 export default function CurrentListComponent() {
     return (
         <div style={{ width: '100%' }}>
-            <Box
-                sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1, flexDirection: 'row', justifyContent: "space-between" }}
-            >
+            <Box className={styles.list_subtitle}>
                 <Box sx={{ width: '30%' }}>
-                    <Typography variant="h4" gutterBottom sx={{ fontSize: "24px", fontWeight: "bold" }}>
+                    <Typography className={styles.list_title} variant="h4" gutterBottom >
                         Текущая страница
                     </Typography>
-                    <Typography variant="subtitle1" gutterBottom sx={{ fontSize: "14px", fontWeight: "normal", color: "green" }}>
+                    <Typography className={styles.filtr_name} variant="subtitle1" gutterBottom>
                         Название фильтра
                     </Typography>
                 </Box>
 
 
-                <Box sx={{ display: "flex", flexDirection: 'row', justifyContent: "end", width: "100%", gap: "20px" }}>
+                <Box className={styles.CurrentSearch_class}>
                     <Box>
-                        <Paper
-                            component="form"
-                            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 264, height: 48, }}
-                        >
+                        <Paper className={styles.CurrentSearch_form}
+                            component="form" >
                             <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                                 <SearchIcon />
                             </IconButton>

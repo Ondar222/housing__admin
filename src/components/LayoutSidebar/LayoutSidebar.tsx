@@ -29,6 +29,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import FolderIcon from '@mui/icons-material/Folder';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import styles from './LayoutSidebar.module.css'
 
 const drawerWidth = 280;
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -139,10 +140,10 @@ export default function LayoutSidebar() {
             <MenuIcon />
           </IconButton>
 
-          <Box sx={{display: "flex", flexDirection: 'row', justifyContent: "space-between", width: "100%"}}>
-          <Paper
+          <Box className={styles.header}>
+          <Paper className='header_form'
             component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 264, height: 48, }}
+            sx={{ p: '2px 4px',}}
           >
             <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
               <SearchIcon />
@@ -156,7 +157,7 @@ export default function LayoutSidebar() {
               <ExitToAppIcon />
             </IconButton>
           </Paper>
-          <IconButton type="button" sx={{ p: '10px', display: "flex", flexDirection: "row", gap: "20px", color: '#B8BFCC'  }} aria-label="search">
+          <IconButton className={styles.header_icon} type="button" aria-label="search">
               <FolderIcon/>
               <NotificationsIcon />
             </IconButton>
@@ -170,7 +171,7 @@ export default function LayoutSidebar() {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: '20px', position: 'fixed', marginBottom: "20px", marginLeft: "20px" }}>
+        <Box className={styles.menu}>
           <ImageList sx={{ width: 31, height: 31 }} cols={1} rowHeight={31}>
             {itemData.map((item) => (
               <ImageListItem key={item.img}>
@@ -185,8 +186,8 @@ export default function LayoutSidebar() {
             ))}
 
           </ImageList>
-          <Box sx={{ width: '100%', maxWidth: 100, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <Typography variant="h4" gutterBottom sx={{ fontSize: "12px", fontWeight: "bold" }}>
+          <Box className={styles.menu_title_block}>
+            <Typography className={styles.menu_title} variant="h4" gutterBottom>
               ИС Жилищных программ
             </Typography>
           </Box>

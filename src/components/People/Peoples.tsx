@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
-// import ImageList from '@mui/material/ImageList';
-// import ImageListItem from '@mui/material/ImageListItem';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import styles from './People.module.css'
 
 function Item(props: BoxProps) {
     const { sx, ...other } = props;
@@ -31,22 +30,10 @@ function Item(props: BoxProps) {
 export default function People() {
     return (
         <div style={{ width: '1095px' }}>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    p: 1,
-                    m: 1,
-                    bgcolor: '#FFFFFF',
-                    borderRadius: 1,
-                    width: '100%'
-                }}
-            >
-
-                <Box sx={{ width: '244px', height: '55px', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
+            <Box className={styles.People}>
+                <Box className={styles.People_class}>
                     <img src='./public/img/total-logo.png' />
-                    <Box sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: "0 auto" }}>
+                    <Box className={styles.All_class}>
                         <Typography variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
                             Всего
                         </Typography>
@@ -57,9 +44,9 @@ export default function People() {
                 </Box >
 
                 <Divider sx={{ marginRight: "20px" }} orientation="vertical" variant="middle" flexItem />
-                <Box sx={{ width: '244px', height: '55px', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
+                <Box className={styles.Standar_class}>
                     <img src='./public/img/standart-logo.png' />
-                    <Box sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: "0 auto" }}>
+                    <Box className={styles.Standart_block}>
                         <Typography variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
                             Обычные
                         </Typography>
@@ -69,9 +56,9 @@ export default function People() {
                     </Box>
                 </Box >
                 <Divider sx={{ marginRight: "20px" }} orientation="vertical" variant="middle" flexItem />
-                <Box sx={{ width: '244px', height: '55px', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
+                <Box  className={styles.Large_class}>
                     <img src='./public/img/large-logo.png' />
-                    <Box sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: "0 auto" }}>
+                    <Box className={styles.Large_block}>
                         <Typography variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
                             Многодетные
                         </Typography>

@@ -14,9 +14,9 @@ import Typography from '@mui/material/Typography';
 function createData(
     name: string,
     direction: string,
-    phone: number,
+    phone: string,
     email: string,
-    application: number,
+    application: string,
     status: string
 ) {
     return { name, direction, phone, email, application, status };
