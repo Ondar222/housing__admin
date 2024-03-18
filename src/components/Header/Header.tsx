@@ -1,8 +1,8 @@
-import { FC } from "react";
-import styles from "./styles.module.css"
+// import { FC } from "react";
+// import styles from "./styles.module.css"
 
-const Header: FC = () => {
-    return <div className={styles.header}></div>
-}
+// const Header: FC = () => {
+//     return <div className={styles.header}></div>
+// }
 
-export { Header }
+// export { Header }

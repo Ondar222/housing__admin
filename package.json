@@ -12,9 +12,17 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.12",
+    "@material/switch": "^14.0.0",
+    "@mui/icons-material": "^5.15.13",
     "@mui/material": "^5.15.13",
+    "@mui/x-charts": "^6.19.5",
+    "@mui/x-date-pickers": "^6.19.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-css-modules": "^4.7.11",
+    "react-datepicker": "^6.3.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",

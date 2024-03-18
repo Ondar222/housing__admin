@@ -1,0 +1,56 @@
+.People {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1;
+    padding: 1;
+    background: #ffffff;
+    border-radius: 1;
+    width: 100%;
+}
+
+.People_class {
+    width: 244px;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.All_class {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.Standar_class {
+    width: 244px;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.Standart_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.Large_class {
+    width: 244px;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.Large_block {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ margin: 0 auto;
+}
+
