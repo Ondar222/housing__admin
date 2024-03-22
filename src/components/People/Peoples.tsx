@@ -34,10 +34,10 @@ export default function People() {
                 <Box className={styles.People_class}>
                     <img src='./public/img/total-logo.png' />
                     <Box className={styles.All_class}>
-                        <Typography variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
+                        <Typography className={styles.all_text} variant="subtitle2" gutterBottom >
                             Всего
                         </Typography>
-                        <Typography variant="h5" gutterBottom sx={{ fontSize: "20px", fontWeight: "bold" }}>
+                        <Typography className={styles.all_number} variant="h5" gutterBottom >
                             800
                         </Typography>
                     </Box>
@@ -47,10 +47,10 @@ export default function People() {
                 <Box className={styles.Standar_class}>
                     <img src='./public/img/standart-logo.png' />
                     <Box className={styles.Standart_block}>
-                        <Typography variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
+                        <Typography className={styles.standart_text} variant="subtitle2" gutterBottom >
                             Обычные
                         </Typography>
-                        <Typography variant="h5" gutterBottom sx={{ fontSize: "20px", fontWeight: "bold" }}>
+                        <Typography className={styles.standart_number} variant="h5" gutterBottom >
                             561
                         </Typography>
                     </Box>
@@ -59,7 +59,7 @@ export default function People() {
                 <Box  className={styles.Large_class}>
                     <img src='./public/img/large-logo.png' />
                     <Box className={styles.Large_block}>
-                        <Typography variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
+                        <Typography className={styles.large_text} variant="subtitle2" gutterBottom sx={{ fontSize: "12px", fontWeight: "normal" }}>
                             Многодетные
                         </Typography>
                         <Typography variant="h5" gutterBottom sx={{ fontSize: "20px", fontWeight: "bold" }}>

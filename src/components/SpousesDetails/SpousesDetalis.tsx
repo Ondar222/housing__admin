@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import "react-datepicker/dist/react-datepicker.css";
 import { Typography } from '@mui/material';
 
-
+import styles from './Spouses.module.css'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,13 +17,13 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function SpousesDetalisComponent() {
+export default function SpousesDetalisComponent(props : any) {
     return (
-        <div style={{ background: "#FFFFFF", marginTop: "20px" }}>
-            <Typography variant='h5' sx={{ padding: "0px 10px", background: "#007AFF", color: "#FFFFFF" }}>
+        <div className={styles.spouses}>
+            <Typography  className={styles.spouses_title} variant='h5'>
                 Данные супруга(-ги) (при необходимости)
             </Typography>
-            <Box sx={{ flexGrow: 1, width: "100%", paddingTop: "20px" }}>
+            <Box className={styles.spouses_surname} sx={{ flexGrow: 1 }}>
                 <Grid container spacing={3}>
                     <Grid xs={4}>
                         <Box
@@ -39,6 +39,7 @@ export default function SpousesDetalisComponent() {
                                 id="outlined-required"
                                 label="Фамилия"
                                 placeholder="Введите фамилию"
+                                {...props.register("spouse.surname")}
                             />
                         </Box>
 
@@ -57,6 +58,7 @@ export default function SpousesDetalisComponent() {
                                 id="outlined-required"
                                 label="Имя"
                                 placeholder="Введите Имю"
+                                {...props.register("spouse.name")}
                             />
                         </Box>
 
@@ -116,6 +118,7 @@ export default function SpousesDetalisComponent() {
                                 id="outlined-required"
                                 label="Телефон"
                                 placeholder="Введите Номер Телефона"
+                                {...props.register("spouse.phone")}
                             />
                             
 
@@ -143,20 +146,7 @@ export default function SpousesDetalisComponent() {
 
                     </Grid>
                 </Grid>
-
-
-
-
-
-
             </Box>
-
-
-
-
-
-
-
         </div>
     )
 }

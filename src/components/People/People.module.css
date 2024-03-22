@@ -24,6 +24,16 @@
     margin: 0 auto;
 }
 
+.all_text {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.all_number {
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+
 .Standar_class {
     width: 244px;
     height: 55px;
@@ -39,6 +49,16 @@
     margin: 0 auto;
 }
 
+.standart_text {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.standart_number {
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+
 .Large_class {
     width: 244px;
     height: 55px;
@@ -48,9 +68,12 @@
 }
 
 .Large_block {
- display: flex;
- flex-direction: column;
- justify-content: center;
- margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
 }
 
+.large_text {
+    
+}
