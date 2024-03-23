@@ -1,6 +1,6 @@
 import { Box, Typography, TextField } from "@mui/material";
 import { FC, useEffect } from "react";
-import { ParticipantFormI, ParticipantType } from "./ParticipantForm";
+import { ParticipantFormI } from "../../types/Participant";
 
 const ApplicantForm: FC<ParticipantFormI> = ({
   type,

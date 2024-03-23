@@ -1,3 +1,5 @@
+import { UseFormRegister, FieldValues } from "react-hook-form"
+
 export enum ApplicationStatus {
     SUBMITTED = "submitted",
     ASSIGNED = "assigned",
@@ -20,10 +22,10 @@ export type Application = {
     rejected_date: string | null
 }
 
-export type ApplicationForm = {
-    
+export type ApplicationFormI = {
+    register: UseFormRegister<FieldValues>
 }
 
-export type ApplicationList = {
+// export type ApplicationList = {
 
-}
+// }

@@ -1,8 +1,8 @@
 .analytics_header_container {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .analytics_header_title {
@@ -11,9 +11,9 @@ width: 100%;
 }
 
 .control_point_class {
- display: flex;
- flex-direction: column;
- justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .control_point_icon {
@@ -27,7 +27,6 @@ width: 100%;
     flex-wrap: wrap;
     align-content: flex-end;
     background-color: 'background.paper';
-    max-width: 1095px;
 }
 
 .DashboardList_block {
@@ -52,8 +51,7 @@ width: 100%;
 .AccessOwnersTeam {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
-    margin-left: 20px;
+    align-items: center;
 }
 
 .access_class {
@@ -70,11 +68,11 @@ width: 100%;
 }
 
 .title_owners {
- font-weight: bold;
- font-size: 11px !important;
- display: flex;
- flex-direction: column;
- justify-content: center;
+    font-weight: bold;
+    font-size: 11px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title_XTeam {
@@ -86,9 +84,9 @@ width: 100%;
 }
 
 .CancelIcon {
-width: 24px !important;
-height: 24px !important;
-margin-top: 16px;
+    width: 24px !important;
+    height: 24px !important;
+    margin-top: 16px;
 }
 
 .SearchForm_class {
@@ -100,8 +98,6 @@ margin-top: 16px;
 .analytic_form {
     display: flex;
     align-items: center;
-    width: 176px !important;
-    height: 48px !important;
 }
 
 .Analytic_avatar {

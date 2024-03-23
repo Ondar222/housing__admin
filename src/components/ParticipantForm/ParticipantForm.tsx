@@ -1,36 +1,11 @@
 import { Box, TextField, Typography } from "@mui/material";
-import { FC, useEffect } from "react";
-import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form";
+import { FC } from "react";
+import { UniversavParticipantFormI, ParticipantType } from "../../types/Participant";
 
-export enum ParticipantType {
-  APPLICANT = "applicant",
-  SPOUSE = "spouse",
-  CHILD = "child",
-}
 
-export interface ParticipantFormI {
-  register: UseFormRegister<FieldValues>;
-  type: ParticipantType;
-}
 
-export interface SpouseFormI extends ParticipantFormI {}
-
-export interface ApplicantFormI extends ParticipantFormI {}
-
-export interface ChildFormI extends ParticipantFormI {
-  childIndex: number;
-  onDelete: (index: number) => void
-}
-
-export interface UniversavParticipantFormI extends SpouseFormI, ApplicantFormI, ChildFormI {
-
-}
-
-const ParticipantForm: FC<UniversavParticipantFormI> = ({ type, register }) => {
+const ParticipantForm: FC<UniversavParticipantFormI> = ({ type, register, childIndex }) => {
   const notChild = type != ParticipantType.CHILD;
-
-  useEffect(() => {}, []);
-
   return (
     <Box>
       <Typography>
@@ -53,8 +28,7 @@ const ParticipantForm: FC<UniversavParticipantFormI> = ({ type, register }) => {
       <TextField
         placeholder="Отчество"
         {...register(
-          `${type}${
-            childIndex != undefined ? `[${childIndex}]` : ""
+          `${type}${childIndex != undefined ? `[${childIndex}]` : ""
           }.patronymic`
         )}
       />

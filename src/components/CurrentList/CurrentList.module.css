@@ -1,10 +1,10 @@
 .list_subtitle {
- display: flex;
- background: 'background.paper';
- border-radius: 1;
- flex-direction: row;
- justify-content: space-between;
- margin-top: 20px;
+    display: flex;
+    background: 'background.paper';
+    border-radius: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .list_title {
@@ -13,24 +13,23 @@
 }
 
 .filtr_name {
- font-size: 14px;
- font-weight: normal;
- color: green;
+    font-size: 14px;
+    font-weight: normal;
+    color: green;
 }
 
 .CurrentSearch_class {
- display: flex;
- flex-direction: row;
- justify-content: end;
- width: 100%;
- gap: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+    gap: 20px;
 }
 
 .CurrentSearch_form {
- display: flex;
- align-items: center;
- width: 264px;
- height: 48px;
- padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    width: 264px;
+    height: 48px;
+    padding: 2px 4px;
 }
-

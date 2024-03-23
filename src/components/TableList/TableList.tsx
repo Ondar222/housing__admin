@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,8 +7,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Container } from '@mui/material';
 
 function createData(
     name: string,
@@ -35,7 +35,7 @@ const rows = [
 
 export default function TableListComponent() {
     return (
-        <div>
+        <Container maxWidth={false} disableGutters>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -67,17 +67,16 @@ export default function TableListComponent() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "20px"}}>
+            <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "20px" }}>
 
-            <Box>
                 <Typography variant="subtitle1" gutterBottom sx={{ fontSize: "14px", fontWeight: "normal", }}>
-                Показывать 1 - 8 из 800 заявок
+                    Показывать 1 - 8 из 800 заявок
                 </Typography>
+                <Stack spacing={2}>
+                    <Pagination count={10} variant="outlined" shape="rounded" />
+                </Stack>
             </Box>
-            <Stack spacing={2}>
-                <Pagination count={100} variant="outlined" shape="rounded" />
-            </Stack>
-            </Box>
-        </div>
+        </Container>
+
     );
 }

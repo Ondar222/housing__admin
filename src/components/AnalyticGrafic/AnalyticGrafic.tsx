@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -6,7 +5,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Typography } from "@mui/material"
 import { ChartContainer, BarPlot } from '@mui/x-charts';
 import { PieChart } from '@mui/x-charts/PieChart';
-import { useDrawingArea } from '@mui/x-charts/hooks';
 import { BarChart } from '@mui/x-charts/BarChart';
 import Stack from '@mui/material/Stack';
 
@@ -34,18 +32,6 @@ const data = [
   { label: 'Group C', value: 100 },
   { label: 'Group D', value: 100 },
 ];
-
-
-const size = {
-  width: 400,
-  height: 200,
-};
-
-
-const chartSetting = {
-  width: 550,
-  height: 388,
-};
 
 const dataset = [
   {
@@ -136,7 +122,7 @@ export default function AnalyticGraficComponent() {
               yAxis={[{ scaleType: 'band', dataKey: 'result' }]}
               series={[{ dataKey: 'seoul', valueFormatter }]}
               layout="horizontal"
-          
+
             />
           </Box>
         </Item>

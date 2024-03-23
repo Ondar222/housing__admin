@@ -3,40 +3,40 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-   }
-   
-   .header_form {
+}
+
+.header_form {
     display: flex;
     align-items: center;
     width: 264px;
     height: 48px;
-   }
-   
-   .header_icon {
+}
+
+.header_icon {
     display: flex;
     flex-direction: row;
     gap: 20px;
     color: #B8BFCC !important;
-   }
-   
-   .menu {
+}
+
+.menu {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    position: fixed;
+    /* position: fixed; */
     margin-bottom: 20px;
     margin-left: 20px;
-   }
-   
-   .menu_title_block {
+}
+
+.menu_title_block {
     width: 100%;
     max-width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-   }
-   
-   .menu_title {
-       font-size: 12px !important;
-       font-weight: bold !important;
-   }
+}
+
+.menu_title {
+    font-size: 12px !important;
+    font-weight: bold !important;
+}

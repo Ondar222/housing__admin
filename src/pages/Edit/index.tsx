@@ -1,37 +1,23 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import ChildrensDataComponent from "../../components/ChildrensData/ChildrensData";
-import LayoutSidebar from "../../components/LayoutSidebar/LayoutSidebar";
-import PersonalComponent from "../../components/PersonalData/Personal";
-import SpousesDetalisComponent from "../../components/SpousesDetails/SpousesDetalis";
+import { LayoutSidebar } from "../../components/LayoutSidebar";
 import {
   ApplicantForm,
   ChildForm,
-  ParticipantForm,
   SpouseForm,
 } from "../../components/ParticipantForm";
-import { ParticipantType } from "../../components/ParticipantForm/ParticipantForm";
-import { Button, Switch } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { FamilyForm } from "../../components/FamilyForm";
-
-interface ParticipantFormData {
-  surname: string;
-  name: string;
-  patronymic: string;
-  family: {
-    is_marries: boolean;
-    is_complete: boolean;
-    is_large: boolean;
-    family: Array<any>;
-  };
-}
+import { ParticipantFormData, ParticipantType } from "../../types/Participant";
+import { ApplicationForm } from "../../components/ApplicationForm";
+import { PassportForm } from "../../components/DocumentForm";
+import { Layout } from "../../components/Layout";
 
 export default function EditPage() {
   const [children, setChildren] = useState<Array<number> | undefined>(
     undefined
   );
-  const { register, unregister, handleSubmit, watch } = useForm();
+  const { register, unregister, handleSubmit, watch, control } = useForm();
   const isMarried = watch("family.isMarried");
 
   useEffect(() => {
@@ -71,16 +57,16 @@ export default function EditPage() {
 
     console.log(values);
 
-    await axios
-      .post("https://cbr17.rtyva.ru/cms/items/participant", data, {
-        headers: {
-          Authorization: "Bearer S05SaNBtAYK1xgzj8PKvEVtchmfQCCFx",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => console.error(e));
+    // await axios
+    //   .post("https://cbr17.rtyva.ru/cms/items/participant", data, {
+    //     headers: {
+    //       Authorization: "Bearer S05SaNBtAYK1xgzj8PKvEVtchmfQCCFx",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => console.error(e));
   };
 
   const addChild = () =>
@@ -113,16 +99,18 @@ export default function EditPage() {
   };
 
   return (
-    <div>
-      <LayoutSidebar />
+    <Layout>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <ApplicationForm register={register} />
+        <PassportForm register={register} prefix={ParticipantType.APPLICANT} control={control} />
         <ApplicantForm type={ParticipantType.APPLICANT} register={register} />
         <FamilyForm register={register} />
         {isMarried && (
           <SpouseForm type={ParticipantType.SPOUSE} register={register} />
         )}
         <Button onClick={addChild}>Добавить ребенка</Button>
-        {children != undefined &&
+        {
+          children != undefined &&
           children.length > 0 &&
           children.map((item) => {
             return (
@@ -131,15 +119,13 @@ export default function EditPage() {
                 type={ParticipantType.CHILD}
                 register={register}
                 childIndex={item}
-                onDelete={() => deleteChild(item)}
+                onDelete={deleteChild}
               />
             );
-          })}
+          })
+        }
         <Button type="submit">Отправить</Button>
-        {/* <PersonalComponent />
-        <SpousesDetalisComponent />
-        <ChildrensDataComponent /> */}
       </form>
-    </div>
+    </Layout>
   );
 }

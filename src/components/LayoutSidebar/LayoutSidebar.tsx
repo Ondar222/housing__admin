@@ -1,23 +1,18 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import SearchIcon from '@mui/icons-material/Search';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { Link } from '@mui/material';
+import { Link, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AvatarSidebar from '../AvatarSidebar/AvatarSidebar';
 import ImageList from '@mui/material/ImageList';
@@ -25,10 +20,6 @@ import ImageListItem from '@mui/material/ImageListItem';
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import FolderIcon from '@mui/icons-material/Folder';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import styles from './LayoutSidebar.module.css'
 
 const drawerWidth = 280;
@@ -57,7 +48,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
+  // padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
@@ -103,13 +94,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const itemData = [
   {
-    img: './public/img/housing-logo.png',
+    img: '/img/housing-logo.png',
     title: 'Breakfast',
   }
 
 ];
 
-export default function LayoutSidebar() {
+export const LayoutSidebar: FC<any> = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -123,8 +114,7 @@ export default function LayoutSidebar() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -141,31 +131,31 @@ export default function LayoutSidebar() {
           </IconButton>
 
           <Box className={styles.header}>
-          <Paper className='header_form'
-            component="form"
-            sx={{ p: '2px 4px',}}
-          >
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Введите запрос"
-              inputProps={{ 'aria-label': 'Введите запрос' }}
-            />
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-              <ExitToAppIcon />
-            </IconButton>
-          </Paper>
-          <IconButton className={styles.header_icon} type="button" aria-label="search">
-              <FolderIcon/>
+            <Paper className='header_form'
+              component="form"
+              sx={{ p: '2px 4px', }}
+            >
+              <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                <SearchIcon />
+              </IconButton>
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Введите запрос"
+                inputProps={{ 'aria-label': 'Введите запрос' }}
+              />
+              <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                <ExitToAppIcon />
+              </IconButton>
+            </Paper>
+            <IconButton className={styles.header_icon} type="button" aria-label="search">
+              <FolderIcon />
               <NotificationsIcon />
             </IconButton>
           </Box>
-            
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+
+      <Drawer variant="permanent" open={true}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -197,7 +187,7 @@ export default function LayoutSidebar() {
         <Divider sx={{ marginTop: "20px" }} />
 
 
-        <List sx={{marginLeft: "10px"}}>
+        <List sx={{ marginLeft: "10px" }}>
           <ListItem button component={Link} href="/analytics">
             <ListItemIcon>
               <DataSaverOffIcon />
@@ -217,10 +207,12 @@ export default function LayoutSidebar() {
             <ListItemText primary="Редактировать" />
           </ListItem>
         </List>
+
         <Divider />
         <Divider sx={{ marginTop: "20px" }} />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 1, }}>
+
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <DrawerHeader />
       </Box>
     </Box>

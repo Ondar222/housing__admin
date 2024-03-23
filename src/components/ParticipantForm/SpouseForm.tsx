@@ -1,13 +1,11 @@
 import { Box, Typography, TextField } from "@mui/material";
-import { FC, useEffect } from "react";
-import { ParticipantFormI, ParticipantType, SpouseFormI } from "./ParticipantForm";
+import { FC } from "react";
+import { SpouseFormI } from "../../types/Participant";
 
 const SpouseForm: FC<SpouseFormI> = ({
   type,
   register
 }) => {
-  useEffect(() => {}, []);
-
   return (
     <Box>
       <Typography>Данные супруги</Typography>
