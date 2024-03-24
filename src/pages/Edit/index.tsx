@@ -42,8 +42,13 @@ export default function EditPage() {
         is_large: values.family.isLarge,
         family: [],
       },
-      
+      application: [{
+        housing_program: 2,
+        intention: "constuction"
+      }]
     };
+
+
     if (spouse) {
       console.log(spouse)
       // @ts-ignore

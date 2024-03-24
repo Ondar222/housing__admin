@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import Router from './app/router/index.tsx'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { Provider } from "react-redux"
+import { store } from './store/index.ts'
 
 const theme = createTheme({
   palette: {
@@ -34,17 +36,16 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')!).render(
 
   <React.StrictMode>
-
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter basename='/'>
-          <Router />
+          <Provider store={store} >
+            <Router />
+          </Provider>
         </BrowserRouter>
       </ThemeProvider>
     </LocalizationProvider>
-
-
-  </React.StrictMode>
+  </React.StrictMode >
 
 )
