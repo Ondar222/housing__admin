@@ -5,16 +5,16 @@ import {
 import AnalyticsPage from "../../pages/Analytics";
 import { ListPage } from "../../pages/List";
 import EditPage from "../../pages/Edit";
-import App from "../../App";
+import NotFoundPage from "../../pages/404/404";
 // import App from "../../App";
 
 const Router = () =>
   <Routes>
-    <Route path="/" element={<App />} />
+    <Route path="/" element={<AnalyticsPage />} />
     <Route path="/analytics" element={<AnalyticsPage />} />
     <Route path="/list" element={<ListPage />} />
     <Route path="/edit" element={<EditPage />} />
-    <Route path="/404" element={<div></div>} />
+    <Route path="/*" element={<NotFoundPage />} />
   </Routes>
 
 

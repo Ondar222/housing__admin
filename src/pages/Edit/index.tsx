@@ -39,7 +39,13 @@ export default function EditPage() {
         is_large: values.family.isLarge,
         family: [],
       },
+      application: [{
+        housing_program: 2,
+        intention: "constuction"
+      }]
     };
+
+
     if (spouse) {
       data.family.family.push(spouse);
     }
@@ -54,8 +60,6 @@ export default function EditPage() {
     children?.forEach((child) => {
       data.family.family.push(child);
     });
-
-    console.log(values);
 
     // await axios
     //   .post("https://cbr17.rtyva.ru/cms/items/participant", data, {

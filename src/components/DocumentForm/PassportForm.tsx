@@ -1,8 +1,23 @@
-import { Box, MenuItem, Select, TextField } from "@mui/material"
+import { Box, Button, MenuItem, Select, TextField, styled } from "@mui/material"
 import { FC } from "react"
 import { PassportFormI } from "../../types/Document"
 import { DatePicker } from "@mui/x-date-pickers"
 import { Controller } from "react-hook-form"
+import { CloudUpload } from '@mui/icons-material';
+
+const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+});
+
+
 
 const PassportForm: FC<PassportFormI> = ({ register, prefix, control }) => {
     return (
@@ -19,6 +34,18 @@ const PassportForm: FC<PassportFormI> = ({ register, prefix, control }) => {
             <TextField />
             <TextField {...register(`${prefix}.passport.unit_code`)} />
             <TextField {...register(`${prefix}.passport.issued_by`)} />
+
+            <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<CloudUpload />}
+            >
+                Upload file
+                <VisuallyHiddenInput type="file" {...register("files")} />
+            </Button>
+
             <Controller
                 control={control}
                 {...register(`${prefix}.passport.issued_date`)}
@@ -31,7 +58,7 @@ const PassportForm: FC<PassportFormI> = ({ register, prefix, control }) => {
                     />
                 )} />
 
-            <input type="file" />
+            {/* <input type="file" {...register("files")}/> */}
         </Box>
     )
 }
