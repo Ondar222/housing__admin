@@ -4,10 +4,10 @@ import { ApplicationFormI } from "../../types/Application"
 
 const ApplicationForm: FC<ApplicationFormI> = ({ register }) => {
     return (
-        <Box>
-            <Box>
-                <Typography>Заявка</Typography>
-            </Box>
+        <Box sx={{display: "flex", flexDirection: "column", gap :"20px"}}>
+          
+                <Typography sx={{fontWeight: "bold", fontSize: "20px",padding: "5px 10px", background: "#007AFF", color: "#FFF", height: "42px"}}>Заявка</Typography>
+           
             <Select
                 defaultValue={"mortgage"}
                 placeholder="Жилищная программа"

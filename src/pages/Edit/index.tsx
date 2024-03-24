@@ -10,8 +10,10 @@ import { useEffect, useState } from "react";
 import { FamilyForm } from "../../components/FamilyForm";
 import { ParticipantFormData, ParticipantType } from "../../types/Participant";
 import { ApplicationForm } from "../../components/ApplicationForm";
-import { PassportForm } from "../../components/DocumentForm";
+import { PassportForm} from "../../components/DocumentForm";
+import { SnilsForm } from "../../components/DocumentForm";
 import { Layout } from "../../components/Layout";
+import axios from "axios";
 
 export default function EditPage() {
   const [children, setChildren] = useState<Array<number> | undefined>(
@@ -33,15 +35,22 @@ export default function EditPage() {
       surname: values.applicant.surname,
       name: values.applicant.name,
       patronymic: values.applicant.patronymic,
+      snils: 1,
       family: {
         is_marries: values.family.isMarried,
         is_complete: values.family.isComplete,
         is_large: values.family.isLarge,
         family: [],
       },
+      
     };
     if (spouse) {
-      data.family.family.push(spouse);
+      console.log(spouse)
+      // @ts-ignore
+      const snils = [{...spouse.snils}]
+      
+      // @ts-ignore
+      data.family.family.push({...spouse, snils: snils});
     }
 
     if (Array.isArray(children)) {
@@ -55,18 +64,18 @@ export default function EditPage() {
       data.family.family.push(child);
     });
 
-    console.log(values);
+    console.log(data);
 
-    // await axios
-    //   .post("https://cbr17.rtyva.ru/cms/items/participant", data, {
-    //     headers: {
-    //       Authorization: "Bearer S05SaNBtAYK1xgzj8PKvEVtchmfQCCFx",
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((e) => console.error(e));
+    await axios
+      .post("https://cbr17.rtyva.ru/cms/items/participant", data, {
+        headers: {
+          Authorization: "Bearer S05SaNBtAYK1xgzj8PKvEVtchmfQCCFx",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => console.error(e));
   };
 
   const addChild = () =>
@@ -100,15 +109,17 @@ export default function EditPage() {
 
   return (
     <Layout>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}style={{display: "flex", flexDirection: "column", gap: "20px"}}>
         <ApplicationForm register={register} />
+        <ApplicantForm prefix={ParticipantType.APPLICANT} register={register} />
         <PassportForm register={register} prefix={ParticipantType.APPLICANT} control={control} />
-        <ApplicantForm type={ParticipantType.APPLICANT} register={register} />
         <FamilyForm register={register} />
         {isMarried && (
-          <SpouseForm type={ParticipantType.SPOUSE} register={register} />
+          <SpouseForm prefix={ParticipantType.SPOUSE} register={register} />
         )}
-        <Button onClick={addChild}>Добавить ребенка</Button>
+        {/* <SnilsForm register={register} prefix={ParticipantType.SPOUSE}/> */}
+        
+        <Button sx={{display: "flex", background: '#007AFF', color: "#FFF", width: "160px"}} onClick={addChild}>Добавить ребенка</Button>
         {
           children != undefined &&
           children.length > 0 &&
@@ -116,15 +127,19 @@ export default function EditPage() {
             return (
               <ChildForm
                 key={`child_#${item}`}
-                type={ParticipantType.CHILD}
+                prefix={ParticipantType.CHILD}
                 register={register}
                 childIndex={item}
                 onDelete={deleteChild}
+                control={control}
               />
-            );
+              
+            );      
           })
+          
         }
-        <Button type="submit">Отправить</Button>
+        
+        <Button sx={{display: "flex", background: '#007AFF', color: "#FFF", width: "160px"}}  type="submit">Отправить</Button>
       </form>
     </Layout>
   );

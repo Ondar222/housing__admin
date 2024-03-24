@@ -1,9 +1,11 @@
 import {UseFormRegister, FieldValues} from "react-hook-form"
+import { IAppForm } from "./Form";
 
 export interface ParticipantFormData {
     surname: string;
     name: string;
     patronymic: string;
+    snils: number;
     family: {
       is_marries: boolean;
       is_complete: boolean;
@@ -19,9 +21,7 @@ export enum ParticipantType {
     CHILD = "child",
 }
 
-export interface ParticipantFormI {
-    register: UseFormRegister<FieldValues>;
-    type: ParticipantType;
+export interface ParticipantFormI extends IAppForm {
 }
 
 export interface SpouseFormI extends ParticipantFormI { }

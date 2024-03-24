@@ -114,7 +114,7 @@ export const LayoutSidebar: FC<any> = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar open={open}>
+      {/* <AppBar open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -182,8 +182,8 @@ export const LayoutSidebar: FC<any> = () => {
             </Typography>
           </Box>
         </Box>
-        <Divider sx={{ marginBottom: "20px" }} />
-        <AvatarSidebar />
+        <Divider sx={{ marginBottom: "20px" }} /> */}
+        {/* <AvatarSidebar />
         <Divider sx={{ marginTop: "20px" }} />
 
 
@@ -214,7 +214,7 @@ export const LayoutSidebar: FC<any> = () => {
 
       <Box component="main" sx={{ flexGrow: 1 }}>
         <DrawerHeader />
-      </Box>
+      </Box> */}
     </Box>
   );
 }
