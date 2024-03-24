@@ -46,9 +46,7 @@ export enum ParticipantType {
   CHILD = "child",
 }
 
-export interface ParticipantFormI {
-  register: UseFormRegister<FieldValues>;
-  type: ParticipantType;
+export interface ParticipantFormI extends IAppForm {
 }
 
 export interface SpouseFormI extends ParticipantFormI { }

@@ -3,7 +3,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import "react-datepicker/dist/react-datepicker.css";
 import { Typography } from '@mui/material';
-
 import styles from './Spouses.module.css'
 
 export default function SpousesDetalisComponent(props : any) {
@@ -128,10 +127,9 @@ export default function SpousesDetalisComponent(props : any) {
                                 id="outlined-required"
                                 label="Дата рождения"
                                 placeholder="Введите Дату рождения"
-                            />
-                            
-
+                            />                         
                         </Box>
+                       
 
                     </Grid>
                 </Grid>

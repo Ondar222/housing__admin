@@ -4,38 +4,38 @@ import { UniversavParticipantFormI, ParticipantType } from "../../types/Particip
 
 
 
-const ParticipantForm: FC<UniversavParticipantFormI> = ({ type, register, childIndex }) => {
+const ParticipantForm: FC<UniversavParticipantFormI> = ({ prefix, register, childIndex }) => {
   const notChild = type != ParticipantType.CHILD;
   return (
     <Box>
       <Typography>
-        {type === ParticipantType.APPLICANT && "Личные данные"}
-        {type === ParticipantType.SPOUSE && "Данные супруга/супруги"}
-        {type === ParticipantType.CHILD && "Данные ребенка"}
+        {prefix === ParticipantType.APPLICANT && "Личные данные"}
+        {prefix === ParticipantType.SPOUSE && "Данные супруга/супруги"}
+        {prefix === ParticipantType.CHILD && "Данные ребенка"}
       </Typography>
       <TextField
         placeholder="Фамилия"
         {...register(
-          `${type}${childIndex != undefined ? `[${childIndex}]` : ""}.surname`
+          `${prefix}${childIndex != undefined ? `[${childIndex}]` : ""}.surname`
         )}
       />
       <TextField
         placeholder="Имя"
         {...register(
-          `${type}${childIndex != undefined ? `[${childIndex}]` : ""}.name`
+          `${prefix}${childIndex != undefined ? `[${childIndex}]` : ""}.name`
         )}
       />
       <TextField
         placeholder="Отчество"
         {...register(
-          `${type}${childIndex != undefined ? `[${childIndex}]` : ""
+          `${prefix}${childIndex != undefined ? `[${childIndex}]` : ""
           }.patronymic`
         )}
       />
       {notChild && (
         <TextField
           placeholder="Номер телефона"
-          {...register(`${type}.phone`)}
+          {...register(`${prefix}.phone`)}
         />
       )}
       {notChild && (
