@@ -2,6 +2,8 @@ import { UseFormRegister, FieldValues } from "react-hook-form"
 import { Participant } from "./Participant"
 import { ApiResponse } from "./Api"
 import { UsePaginationProps } from "@mui/material/usePagination/usePagination"
+import { IAppForm } from "./Form"
+import { HousingProgramList } from "./HousingProgram"
 
 export enum ApplicationStatus {
     SUBMITTED = "submitted",
@@ -12,7 +14,8 @@ export enum ApplicationStatus {
 }
 
 export enum ApplicationIntention {
-    MORTGAGE = "mortgage"
+    MORTGAGE = "mortgage",
+    CONSTRUCTION = "construction"
 }
 
 export type ApplicationT = {
@@ -31,8 +34,9 @@ export type ApplicationT = {
     rejected_date?: string | null
 }
 
-export type ApplicationFormI = {
-    register: UseFormRegister<FieldValues>
+export interface ApplicationFormI extends IAppForm {
+    programs: HousingProgramList
+    isLoading: boolean
 }
 
 export type ApplicationStoreT = {

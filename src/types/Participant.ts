@@ -1,17 +1,17 @@
 import { UseFormRegister, FieldValues } from "react-hook-form"
+import { IAppForm } from "./Form"
+import { IdentificationDocument, Snils } from "./Document"
 
 export type Participant = {
-  id: 1,
-  
+  id: number
   surname: string
   name: string
   patronymic: string
-  account: string
   family: number
   phone: string
   email: string
-  snils: Array<any>
-  identification_document: Array<any>,
+  snils: Snils
+  identification_document: IdentificationDocument,
   personal_docs: Array<any>,
   application: number
 
@@ -25,6 +25,9 @@ export interface ParticipantFormData {
   surname: string;
   name: string;
   patronymic: string;
+
+  snils: Array<Snils>
+  identification_document: Array<IdentificationDocument>
 
   family: {
     is_marries: boolean;

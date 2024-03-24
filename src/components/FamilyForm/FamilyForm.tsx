@@ -1,21 +1,21 @@
 import { Box, Switch } from "@mui/material";
 import { FC } from "react";
 import { FormControlLabel } from "@mui/material";
-// import { SubmitHandler, useForm } from "react-hook-form";
+import { FamilyFormI } from "../../types/Family";
 
-const FamilyForm: FC<any> = (props) => {
+const FamilyForm: FC<FamilyFormI> = ({ register, prefix }) => {
   return (
     <Box>
       <FormControlLabel
-        control={<Switch {...props.register("family.isMarried")} />}
+        control={<Switch {...register("family.isMarried")} />}
         label="В браке"
       />
       <FormControlLabel
-        control={<Switch {...props.register("family.isLarge")} />}
+        control={<Switch {...register("family.isLarge")} />}
         label="Многодетная семья"
       />
       <FormControlLabel
-        control={<Switch {...props.register("family.isComplete")} />}
+        control={<Switch {...register("family.isComplete")} />}
         label="Полная семья"
       />
     </Box>

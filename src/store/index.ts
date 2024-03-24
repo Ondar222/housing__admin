@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import ApplicationReducer from "./slices/application/ApplicationSlice"
+import HousingProgramReducer from "./slices/housing_program/HousingProgramSlice"
 
 const store = configureStore({
     reducer: {
-        application: ApplicationReducer
+        application: ApplicationReducer,
+        housing_program: HousingProgramReducer
     }
 })
 
