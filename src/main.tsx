@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
-// import './styles/Sidebar.module.css'
-import { ThemeProvider, createTheme } from '@mui/material'
-import { BrowserRouter} from 'react-router-dom'
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { BrowserRouter } from 'react-router-dom'
 import Router from './app/router/index.tsx'
-// import LayoutSidebar from './components/LayoutSidebar/LayoutSidebar.tsx'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { Provider } from "react-redux"
+import { store } from './store/index.ts'
 
 const theme = createTheme({
   palette: {
@@ -35,9 +36,16 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')!).render(
 
   <React.StrictMode>
-    <BrowserRouter basename='/'>
-      <Router />
-    </BrowserRouter>
-</React.StrictMode>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter basename='/'>
+          <Provider store={store} >
+            <Router />
+          </Provider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </LocalizationProvider>
+  </React.StrictMode >
 
 )
