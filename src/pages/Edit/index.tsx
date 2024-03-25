@@ -111,9 +111,9 @@ export default function EditPage() {
     console.log(data);
 
     await axios
-      .post("https://cbr17.rtyva.ru/cms/items/participant", data, {
+      .post(`${import.meta.env}/items/participant`, data, {
         headers: {
-          Authorization: "Bearer S05SaNBtAYK1xgzj8PKvEVtchmfQCCFx",
+          Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`,
         },
       })
       .then((res) => {
