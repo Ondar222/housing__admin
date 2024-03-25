@@ -1,8 +1,8 @@
-import { Container, IconButton, InputAdornment, Stack, TextField, useTheme } from "@mui/material"
+import { Container, useTheme } from "@mui/material"
 import { FC, ReactNode, useState } from "react"
-import { Header, Sidebar } from "."
+import {  Sidebar } from "."
 import { Content } from "./Content";
-import { Menu, Search } from "@mui/icons-material";
+
 
 interface LayoutI {
     children?: ReactNode

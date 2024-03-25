@@ -5,7 +5,7 @@ import { UniversavParticipantFormI, ParticipantType } from "../../types/Particip
 
 
 const ParticipantForm: FC<UniversavParticipantFormI> = ({ prefix, register, childIndex }) => {
-  const notChild = type != ParticipantType.CHILD;
+  const notChild = ParticipantType.CHILD;
   return (
     <Box>
       <Typography>

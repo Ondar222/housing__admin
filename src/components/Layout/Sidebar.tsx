@@ -1,10 +1,8 @@
-import { Box, Divider, Drawer, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
-import { FC, useState } from "react"
+import {  Divider, Drawer,Link, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
+import { FC} from "react"
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import AvatarSidebar from "../AvatarSidebar/AvatarSidebar";
 import { AccountInfo } from "../Account/Account";
 import { drawerWidth } from "./consts";
 
@@ -13,10 +11,8 @@ type SidebarT = {
     toggleDrawer: (status: boolean) => void
 }
 
-const Sidebar: FC<SidebarT> = ({ isOpen, toggleDrawer }) => {
-    const handleClose = () => {
-        toggleDrawer(isOpen)
-    }
+const Sidebar: FC<SidebarT> = () => {
+ 
     return (
         <Drawer
             variant="permanent"

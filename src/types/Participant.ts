@@ -1,4 +1,3 @@
-import { UseFormRegister, FieldValues } from "react-hook-form"
 import { IAppForm } from "./Form"
 import { IdentificationDocument, Snils } from "./Document"
 

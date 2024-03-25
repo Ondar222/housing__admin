@@ -1,5 +1,4 @@
-import { InputProps, Stack } from "@mui/material";
-import People from "../../components/People/Peoples";
+import {  Stack } from "@mui/material";
 import { ApplicationTable } from "../../components/ApplicationTable";
 import { Layout } from "../../components/Layout";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/useAppDispatch";
@@ -10,7 +9,7 @@ import { ApplicationTableT } from "../../types/Application";
 
 
 export const ListPage = () => {
-    const [limit, setLimit] = useState(10)
+    const [limit] = useState(10)
     const [totalCount, setTotalCount] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     const [pageCount, setPageCount] = useState(1)
@@ -46,7 +45,7 @@ export const ListPage = () => {
         }))
     }
 
-    const handleSearch = (e: string) => {
+    const handleSearch = () => {
 
     }
 

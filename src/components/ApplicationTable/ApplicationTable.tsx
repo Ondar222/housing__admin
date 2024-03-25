@@ -1,91 +1,108 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Pagination from '@mui/material/Pagination';
-import { Chip, MenuItem, Skeleton, Stack, TextField, Typography } from '@mui/material';
-import { FC, useState } from 'react';
-import { ApplicationTableT } from '../../types/Application';
-import { Search } from '@mui/icons-material';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
+import {
+  Chip,
+  MenuItem,
+  Skeleton,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { FC, useState } from "react";
+import { ApplicationTableT } from "../../types/Application";
 
 const status = [
-    {
-        value: 'all',
-        label: 'Все',
-    },
-    {
-        value: 'assigned',
-        label: 'Одобрена',
-    },
-    {
-        value: 'rejected',
-        label: 'Отклонена',
-    },
+  {
+    value: "all",
+    label: "Все",
+  },
+  {
+    value: "assigned",
+    label: "Одобрена",
+  },
+  {
+    value: "rejected",
+    label: "Отклонена",
+  },
 ];
 
-const ApplicationTable: FC<ApplicationTableT> = ({ isLoading, data, currentPage, total, pageCount, limit, onPageChange, onFilter, onSearch }) => {
-    const [filter, setFilter] = useState<Array<[string, string]>>()
+const ApplicationTable: FC<ApplicationTableT> = ({
+  isLoading,
+  data,
+  currentPage,
+  pageCount,
+  onPageChange,
+  onFilter,
+}) => {
+  const [setFilter] = useState<Array<[string, string]>>();
 
-    const ApplicationView = {
-        false: <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell align='center'>ID</TableCell>
-                        <TableCell>Имя Фамилия</TableCell>
-                        <TableCell align="center">Назначение</TableCell>
-                        <TableCell align="center">Телефон</TableCell>
-                        <TableCell align="center">Почта</TableCell>
-                        <TableCell align="center">Дата заявки</TableCell>
-                        <TableCell align="center">Статус</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map((item) => (
-                        <TableRow
-                            key={item.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell align='center'>{item.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {item.applicant?.surname}&nbsp;
-                                {item.applicant?.name}&nbsp;
-                                {item.applicant?.patronymic}
-                            </TableCell>
-                            <TableCell align="center">{String(item.intention)}</TableCell>
-                            <TableCell align="center">{item.applicant?.phone}</TableCell>
-                            <TableCell align="center">{item.applicant?.email}</TableCell>
-                            <TableCell align="center">{item.date_created}</TableCell>
-                            <TableCell align="center">
-                                <Chip
-                                    label={item.status}
-                                    color="success"
-                                    variant="filled"
-                                    sx={{
-                                        width: "100%"
-                                    }}
-                                />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>,
-        true: <Skeleton height={200} />
-    }
+  const ApplicationView = {
+    false: (
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">ID</TableCell>
+              <TableCell>Имя Фамилия</TableCell>
+              <TableCell align="center">Назначение</TableCell>
+              <TableCell align="center">Телефон</TableCell>
+              <TableCell align="center">Почта</TableCell>
+              <TableCell align="center">Дата заявки</TableCell>
+              <TableCell align="center">Статус</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((item) => (
+              <TableRow
+                key={item.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">{item.id}</TableCell>
+                <TableCell component="th" scope="row">
+                  {item.applicant?.surname}&nbsp;
+                  {item.applicant?.name}&nbsp;
+                  {item.applicant?.patronymic}
+                </TableCell>
+                <TableCell align="center">{String(item.intention)}</TableCell>
+                <TableCell align="center">{item.applicant?.phone}</TableCell>
+                <TableCell align="center">{item.applicant?.email}</TableCell>
+                <TableCell align="center">{item.date_created}</TableCell>
+                <TableCell align="center">
+                  <Chip
+                    label={item.status}
+                    color="success"
+                    variant="filled"
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    ),
+    true: <Skeleton height={200} />,
+  };
 
-    return (
-        <Stack direction={"column"} gap={3} paddingY={5}>
-            <Stack direction={'row'} justifyContent={"space-between"} alignItems={"center"}>
+  return (
+    <Stack direction={"column"} gap={3} paddingY={5}>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Typography variant="h4">Заявки</Typography>
 
-                <Typography variant="h4">Заявки</Typography>
-
-
-                <Stack direction={"row"} gap={3}>
-                    {/* <TextField
+        <Stack direction={"row"} gap={3}>
+          {/* <TextField
                         size="small"
                         name='*'
                         placeholder='Введите запрос'
@@ -99,58 +116,59 @@ const ApplicationTable: FC<ApplicationTableT> = ({ isLoading, data, currentPage,
                     >
                     </TextField> */}
 
-                    <TextField
-                        select
-                        name='status'
-                        size="small"
-                        InputProps={{
-                            startAdornment: <Typography>Статус:&nbsp;</Typography>
-                        }}
-                        sx={{ width: "172px" }}
-                        onChange={(e) => {
-                            const { name, value } = e.target
+          <TextField
+            select
+            name="status"
+            size="small"
+            InputProps={{
+              startAdornment: <Typography>Статус:&nbsp;</Typography>,
+            }}
+            sx={{ width: "172px" }}
+            onChange={(e) => {
+              const { name, value } = e.target;
 
-                            console.log(name, value)
+              console.log(name, value);
 
-                            if (value === "all") {
-                                console.log(value)
-                                setFilter((prev) => prev?.filter((item) => item[0] != name))
-                                onFilter({ name, value: null })
-                            }
-                            else {
-                                setFilter(prev => {
-                                    if (prev != undefined) {
-                                        return [...prev, [name, value]]
-                                    }
+            
+                  if (value === "all") {
+                    console.log(value)(prev) =>
+                      prev?.filter(() => item[0] != name)
+                    );
+                    onFilter({ name, value: null });
+                  } else {
+                    setFilter((prev) => {
+                      if (prev != undefined) {
+                        return [...prev, [name, value]];
+                      }
+    
+                      if (prev === undefined) {
+                        return [[name, value]];
+                      }
+                });
 
-                                    if (prev === undefined) {
-                                        return [[name, value]]
-                                    }
-                                })
-                                onFilter({ name, value })
-                            }
-                        }}>
-                        {status.map((option) => (
-                            <MenuItem
-                                key={option.value}
-                                value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Stack>
-            </Stack>
+                onFilter({ name, value });
+              }
+            }}
+          >
+            {status.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Stack>
+      </Stack>
 
-            {ApplicationView[`${isLoading}`]}
-            <Pagination
-                count={pageCount}
-                variant="outlined"
-                shape="rounded"
-                page={currentPage}
-                onChange={onPageChange}
-            />
-        </Stack >
-    );
-}
+      {ApplicationView[`${isLoading}`]}
+      <Pagination
+        count={pageCount}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        onChange={onPageChange}
+      />
+    </Stack>
+  );
+};
 
-export { ApplicationTable } 
+export { ApplicationTable };

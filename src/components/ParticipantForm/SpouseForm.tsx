@@ -2,11 +2,6 @@ import { Box, Typography, TextField, Stack } from "@mui/material";
 import { FC } from "react";
 import { SpouseFormI } from "../../types/Participant";
 import { PassportForm, SnilsForm } from "../DocumentForm";
-import {
-  RegisterOptions,
-  FieldValues,
-  UseFormRegisterReturn,
-} from "react-hook-form";
 
 const SpouseForm: FC<SpouseFormI> = ({ prefix, register, control }) => {
   return (

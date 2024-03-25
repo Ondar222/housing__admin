@@ -19,7 +19,7 @@ const HousingProgramStore = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getHousingProgramList.pending, (state, action) => {
+            .addCase(getHousingProgramList.pending, (state) => {
                 state.isLoading = true
             })
             .addCase(getHousingProgramList.fulfilled, (state, action) => {

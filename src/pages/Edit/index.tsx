@@ -1,23 +1,19 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LayoutSidebar } from "../../components/LayoutSidebar";
 import {
   ApplicantForm,
   ChildForm,
   SpouseForm,
 } from "../../components/ParticipantForm";
-import { Button, Container } from "@mui/material";
+import { Button} from "@mui/material";
 import { useEffect, useState } from "react";
 import { FamilyForm } from "../../components/FamilyForm";
 import { Participant, ParticipantFormData, ParticipantType } from "../../types/Participant";
 import { ApplicationForm } from "../../components/ApplicationForm";
-import { PassportForm } from "../../components/DocumentForm";
-import { SnilsForm } from "../../components/DocumentForm";
 import { Layout } from "../../components/Layout";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/useAppDispatch";
 import { getHousingProgramList } from "../../store/slices/housing_program/thunks";
-import { ApplicationIntention, ApplicationT } from "../../types/Application";
-import { IdentificationDocument } from "../../types/Document";
+import { ApplicationIntention } from "../../types/Application";
 import { Family } from "../../types/Family";
 
 

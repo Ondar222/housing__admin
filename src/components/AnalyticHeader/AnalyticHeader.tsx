@@ -1,17 +1,7 @@
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import CreateIcon from '@mui/icons-material/Create';
-import Avatar from '@mui/material/Avatar';
-import AvatarGroup from '@mui/material/AvatarGroup';
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Container, Divider, Stack } from '@mui/material';
-import LockIcon from '@mui/icons-material/Lock';
-import CancelIcon from '@mui/icons-material/Cancel';
-import InputBase from '@mui/material/InputBase';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
+import {  Stack } from '@mui/material';
 import styles from './AnalyticHeader.module.css'
 
 function Item(props: BoxProps) {

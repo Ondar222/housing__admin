@@ -3,7 +3,7 @@ import { FC } from "react";
 import { FormControlLabel } from "@mui/material";
 import { FamilyFormI } from "../../types/Family";
 
-const FamilyForm: FC<FamilyFormI> = ({ register, prefix }) => {
+const FamilyForm: FC<FamilyFormI> = ({ register }) => {
   return (
     <Box>
       <FormControlLabel

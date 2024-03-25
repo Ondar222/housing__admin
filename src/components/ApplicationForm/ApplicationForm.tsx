@@ -3,7 +3,7 @@ import { FC } from "react"
 import { ApplicationFormI, ApplicationIntention } from "../../types/Application"
 import { Controller } from "react-hook-form"
 
-const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, prefix, control }) => {
+const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, control }) => {
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <Typography sx={{ fontWeight: "bold", fontSize: "20px", padding: "5px 10px", background: "#007AFF", color: "#FFF", height: "42px" }}>Заявка</Typography>

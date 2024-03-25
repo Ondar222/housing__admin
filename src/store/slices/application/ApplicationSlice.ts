@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getApplicationDetails, getApplications } from "./thunks"
-import { ApplicationStoreT, ApplicationTableT } from "../../../types/Application"
+import { ApplicationStoreT } from "../../../types/Application"
 
 const initialState: ApplicationStoreT = {
     applications: {
