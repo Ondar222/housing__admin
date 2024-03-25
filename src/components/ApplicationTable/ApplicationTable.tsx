@@ -131,7 +131,7 @@ const ApplicationTable: FC<ApplicationTableT> = ({
 
             
                   if (value === "all") {
-                    console.log(value)(prev) =>
+                    console.log(value)((prev) =>
                       prev?.filter(() => item[0] != name)
                     );
                     onFilter({ name, value: null });
