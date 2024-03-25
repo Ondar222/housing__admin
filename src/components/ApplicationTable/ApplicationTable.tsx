@@ -36,7 +36,7 @@ const ApplicationTable: FC<ApplicationTableT> = ({ isLoading, data, currentPage,
                     <TableRow>
                         <TableCell align='center'>ID</TableCell>
                         <TableCell>Имя Фамилия</TableCell>
-                        <TableCell align="center">Направление</TableCell>
+                        <TableCell align="center">Назначение</TableCell>
                         <TableCell align="center">Телефон</TableCell>
                         <TableCell align="center">Почта</TableCell>
                         <TableCell align="center">Дата заявки</TableCell>
@@ -51,13 +51,13 @@ const ApplicationTable: FC<ApplicationTableT> = ({ isLoading, data, currentPage,
                         >
                             <TableCell align='center'>{item.id}</TableCell>
                             <TableCell component="th" scope="row">
-                                {item.applicant.surname}&nbsp;
-                                {item.applicant.name}&nbsp;
-                                {item.applicant.patronymic}
+                                {item.applicant?.surname}&nbsp;
+                                {item.applicant?.name}&nbsp;
+                                {item.applicant?.patronymic}
                             </TableCell>
                             <TableCell align="center">{String(item.intention)}</TableCell>
-                            <TableCell align="center">{item.applicant.phone}</TableCell>
-                            <TableCell align="center">{item?.applicant.email}</TableCell>
+                            <TableCell align="center">{item.applicant?.phone}</TableCell>
+                            <TableCell align="center">{item.applicant?.email}</TableCell>
                             <TableCell align="center">{item.date_created}</TableCell>
                             <TableCell align="center">
                                 <Chip

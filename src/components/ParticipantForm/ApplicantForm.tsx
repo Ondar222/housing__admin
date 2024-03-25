@@ -27,6 +27,7 @@ const ApplicantForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
         <TextField placeholder="Имя" {...register(`${prefix}.name`)} />
         <TextField placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
         <TextField placeholder="Телефон" {...register(`${prefix}.phone`)} />
+        <TextField placeholder="Email" {...register(`${prefix}.email`)} />
       </Box>
 
       <Box sx={{ marginTop: "20px" }}>
