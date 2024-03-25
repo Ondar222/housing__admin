@@ -12,6 +12,6 @@ export type ApiResponse<T> = {
 
 export const API_HEADERS: AxiosRequestConfig["headers"] = {
 
-    Authorization: `Bearer ${import.meta.env.VITE_API_ADMIN_KEY}`
+    Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`
 
 }
