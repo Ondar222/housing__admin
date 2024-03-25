@@ -6,7 +6,7 @@ import { API_HEADERS, ApiResponse } from "../../../../types/Api"
 const getApplications = createAsyncThunk("application/getApplications",
     async (params: AxiosRequestConfig["params"]) => {
         const data = await axios
-            .get<ApiResponse<ApplicationT[]>>(`${import.meta.env.VITE_API}/application?fields=*.*.*`, {
+            .get<ApiResponse<ApplicationT[]>>(`${import.meta.env.VITE_API}/items/application?fields=*.*.*`, {
                 headers: API_HEADERS,
                 params: params
             })
@@ -25,7 +25,7 @@ const getApplications = createAsyncThunk("application/getApplications",
 const getApplicationDetails = createAsyncThunk("application/getApplicationDetails",
     async (id: number) => {
         const data = await axios
-            .get<ApplicationT>(`${import.meta.env.VITE_API}/application/${id}`, {
+            .get<ApplicationT>(`${import.meta.env.VITE_API}/items/application/${id}`, {
                 headers: API_HEADERS
             })
             .then((res) => {
