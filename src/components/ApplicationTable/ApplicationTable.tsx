@@ -40,7 +40,8 @@ const ApplicationTable: FC<ApplicationTableT> = ({
   onPageChange,
   onFilter,
 }) => {
-  const [setFilter] = useState<Array<[string, string]>>();
+  const [filter, setFilter] = useState<Array<[string, string]>>();
+  console.log(filter)
 
   const ApplicationView = {
     false: (
@@ -129,21 +130,21 @@ const ApplicationTable: FC<ApplicationTableT> = ({
 
               console.log(name, value);
 
-            
-                  if (value === "all") {
-                    console.log(value)((prev) =>
-                      prev?.filter(() => item[0] != name)
-                    );
-                    onFilter({ name, value: null });
-                  } else {
-                    setFilter((prev) => {
-                      if (prev != undefined) {
-                        return [...prev, [name, value]];
-                      }
-    
-                      if (prev === undefined) {
-                        return [[name, value]];
-                      }
+
+              if (value === "all") {
+                setFilter((prev) =>
+                  prev?.filter((item) => item[0] != name)
+                );
+                onFilter({ name, value: null });
+              } else {
+                setFilter((prev) => {
+                  if (prev != undefined) {
+                    return [...prev, [name, value]];
+                  }
+
+                  if (prev === undefined) {
+                    return [[name, value]];
+                  }
                 });
 
                 onFilter({ name, value });
