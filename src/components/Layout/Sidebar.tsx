@@ -1,10 +1,11 @@
-import { Divider, Drawer, Link, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
+import { Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
 import { FC } from "react"
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { AccountInfo } from "../Account/Account";
 import { drawerWidth } from "./consts";
+import { Link } from "react-router-dom";
 
 type SidebarT = {
     isOpen: boolean
@@ -49,19 +50,19 @@ const Sidebar: FC<SidebarT> = () => {
             <Divider />
 
             <List sx={{ marginLeft: "10px" }}>
-                <ListItem component={Link} href="/analytics">
+                <ListItem component={Link} to="/analytics">
                     <ListItemIcon>
                         <DataSaverOffIcon />
                     </ListItemIcon>
                     <ListItemText primary="Аналитика" />
                 </ListItem>
-                <ListItem component={Link} href="/list">
+                <ListItem component={Link} to="/list">
                     <ListItemIcon>
                         <BorderColorIcon />
                     </ListItemIcon>
                     <ListItemText primary="Список заявок" />
                 </ListItem>
-                <ListItem component={Link} href="/edit">
+                <ListItem component={Link} to="/edit">
                     <ListItemIcon>
                         <PlaylistAddIcon />
                     </ListItemIcon>
