@@ -1,4 +1,4 @@
-import {  Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { ApplicationTable } from "../../components/ApplicationTable";
 import { Layout } from "../../components/Layout";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/useAppDispatch";
@@ -32,8 +32,6 @@ export const ListPage = () => {
             else {
                 setPageCount(Math.ceil(pageCount))
             }
-
-
         }
     }, [applications])
 
@@ -49,9 +47,7 @@ export const ListPage = () => {
 
     }
 
-    const handleFilter: ApplicationTableT["onFilter"] = ({ name, value }) => {
-        console.log(name, value)
-
+    const handleFilter: ApplicationTableT["onFilter"] = ({ name: _, value }) => {
         dispatch(getApplications({
             page: currentPage,
             limit: limit,
@@ -62,7 +58,6 @@ export const ListPage = () => {
     return (
         <Layout>
             <Stack direction={"column"} justifyContent={"space-between"}>
-
                 <ApplicationTable
                     isLoading={isLoading}
                     data={applications.data}
@@ -72,9 +67,8 @@ export const ListPage = () => {
                     pageCount={pageCount}
                     onSearch={handleSearch}
                     onFilter={handleFilter}
-                    onPageChange={handlePageChange} />
-
-
+                    onPageChange={handlePageChange}
+                />
             </Stack>
         </Layout>
     )

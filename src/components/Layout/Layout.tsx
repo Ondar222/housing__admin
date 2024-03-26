@@ -3,7 +3,6 @@ import { FC, ReactNode, useState } from "react"
 import {  Sidebar } from "."
 import { Content } from "./Content";
 
-
 interface LayoutI {
     children?: ReactNode
 }

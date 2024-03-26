@@ -28,8 +28,6 @@ const SpouseForm: FC<SpouseFormI> = ({ prefix, register, control }) => {
         <PassportForm prefix={prefix} register={register} control={control} />
         <SnilsForm prefix={prefix} register={register} control={control} />
       </Stack>
-
-
     </Box>
   );
 };

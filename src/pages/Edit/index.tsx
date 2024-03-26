@@ -4,7 +4,7 @@ import {
   ChildForm,
   SpouseForm,
 } from "../../components/ParticipantForm";
-import { Button} from "@mui/material";
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FamilyForm } from "../../components/FamilyForm";
 import { Participant, ParticipantFormData, ParticipantType } from "../../types/Participant";
@@ -16,11 +16,11 @@ import { getHousingProgramList } from "../../store/slices/housing_program/thunks
 import { ApplicationIntention } from "../../types/Application";
 import { Family } from "../../types/Family";
 
-
 export interface EditPageForm {
   application: {
     housing_program: number
     intention: ApplicationIntention
+    queue: number
   }
   applicant: Participant
   family: Family
@@ -41,9 +41,8 @@ export default function EditPage() {
       }
     }
   });
-  const isMarried = watch("family.isMarried");
-
-
+  const isMarried: boolean = watch("family.isMarried");
+  const isLarge: boolean = watch("application.queue")
 
   useEffect(() => {
     dispatch(getHousingProgramList())
@@ -54,6 +53,7 @@ export default function EditPage() {
   }, [isMarried]);
 
   const onSubmit: SubmitHandler<EditPageForm> = async (values) => {
+    const queueName = isLarge ? "large_queue": "base_queue"
 
     const data: ParticipantFormData = {
       surname: values.applicant.surname,
@@ -73,10 +73,12 @@ export default function EditPage() {
         family: [],
       },
       application: [{
-        // @ts-ignore
         housing_program: values.application.housing_program,
-        intention: "constuction"
-      }]
+        intention: values.application.intention,
+        [queueName]: {
+          queue: values.application.queue
+        }
+      }],
     };
 
 
@@ -107,11 +109,11 @@ export default function EditPage() {
 
 
 
-    // console.log(values)
+    console.log(values)
     console.log(data);
 
     await axios
-      .post(`${import.meta.env}/items/participant`, data, {
+      .post(`${import.meta.env.VITE_API}/items/participant`, data, {
         headers: {
           Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`,
         },
@@ -154,14 +156,43 @@ export default function EditPage() {
   return (
     <Layout>
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-        <ApplicationForm register={register} programs={housing_programs.data} prefix={"application"} isLoading={isLoading} control={control} />
-        <ApplicantForm prefix={ParticipantType.APPLICANT} register={register} control={control} />
-        <FamilyForm register={register} prefix={"family"} />
+        <ApplicationForm
+          register={register}
+          prefix={"application"}
+          control={control}
+          isLoading={isLoading}
+          programs={housing_programs.data}
+
+        />
+        <ApplicantForm
+          register={register}
+          prefix={ParticipantType.APPLICANT}
+          control={control}
+        />
+        <FamilyForm
+          register={register}
+          prefix={"family"}
+        />
+
         {isMarried && (
-          <SpouseForm prefix={ParticipantType.SPOUSE} register={register} control={control} />
+          <SpouseForm
+            register={register}
+            prefix={ParticipantType.SPOUSE}
+            control={control}
+          />
         )}
 
-        <Button sx={{ display: "flex", background: '#007AFF', color: "#FFF", width: "160px" }} onClick={addChild}>Добавить ребенка</Button>
+        <Button
+          onClick={addChild}
+          sx={{
+            display: "flex",
+            background: '#007AFF',
+            color: "#FFF",
+            width: "160px"
+          }}
+        >
+          Добавить ребенка
+        </Button>
         {
           children != undefined &&
           children.length > 0 &&
@@ -175,13 +206,18 @@ export default function EditPage() {
                 onDelete={deleteChild}
                 control={control}
               />
-
             );
           })
-
         }
 
-        <Button sx={{ display: "flex", background: '#007AFF', color: "#FFF", width: "160px" }} type="submit">Отправить</Button>
+        <Button sx={{
+          display: "flex",
+          background: '#007AFF',
+          color: "#FFF",
+          width: "160px"
+        }} type="submit">
+          Отправить
+        </Button>
       </form>
     </Layout>
   );

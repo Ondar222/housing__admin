@@ -8,7 +8,6 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import Stack from '@mui/material/Stack';
 
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -24,7 +23,6 @@ const xLabels = [
   'Page C',
   'Page D',
 ];
-
 
 const data = [
   { label: 'Group A', value: 500 },

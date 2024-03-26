@@ -1,4 +1,4 @@
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material"
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material"
 import { FC } from "react"
 import { ApplicationFormI, ApplicationIntention } from "../../types/Application"
 import { Controller } from "react-hook-form"
@@ -44,6 +44,7 @@ const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, control }) 
                 </Select>
             </FormControl>
 
+            <TextField placeholder="Номер в очереди" {...register("application.queue")} />
         </Box>
     )
 }
