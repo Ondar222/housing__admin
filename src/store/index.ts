@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
-import ApplicationReducer from "./slices/application/ApplicationSlice"
-import HousingProgramReducer from "./slices/housing_program/HousingProgramSlice"
+import applicationReducer from "./slices/application/ApplicationSlice"
+import housingProgramReducer from "./slices/housing_program/HousingProgramSlice"
+import authReducer from "./slices/auth"
 
 const store = configureStore({
     reducer: {
-        application: ApplicationReducer,
-        housing_program: HousingProgramReducer
+        application: applicationReducer,
+        housing_program: housingProgramReducer,
+        auth: authReducer
     }
 })
 

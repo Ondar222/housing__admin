@@ -4,7 +4,7 @@ import {
   ChildForm,
   SpouseForm,
 } from "../../components/ParticipantForm";
-import { Box, Button, Typography } from "@mui/material";
+import { Alert, Backdrop, Box, Button, CircularProgress, Snackbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FamilyForm } from "../../components/FamilyForm";
 import { Participant, ParticipantFormData, ParticipantType } from "../../types/Participant";
@@ -29,12 +29,14 @@ export interface EditPageForm {
 }
 
 export default function EditPage() {
+  const [isResult, setIsResult] = useState<boolean>(false)
+  const [isDataLoading, setIsDataLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch()
   const { housing_programs, isLoading } = useAppSelector((state) => state.housing_program)
   const [children, setChildren] = useState<Array<number> | undefined>(
     undefined
   );
-  const { register, unregister, handleSubmit, watch, control } = useForm<any>({
+  const { register, unregister, handleSubmit, watch, control, reset } = useForm<any>({
     defaultValues: {
       family: {
         isMarried: false,
@@ -117,7 +119,7 @@ export default function EditPage() {
 
     console.log(queueName)
     console.log(isLarge)
-
+    setIsDataLoading(true)
     await axios
       .post(`${import.meta.env.VITE_API}/items/participant`, data, {
         headers: {
@@ -126,8 +128,14 @@ export default function EditPage() {
       })
       .then((res) => {
         console.log(res);
+        setIsDataLoading(false)
+        setIsResult(true)
+        reset()
       })
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        setIsDataLoading(false)
+        console.error(e)
+      });
   };
 
   const addChild = () =>
@@ -161,6 +169,30 @@ export default function EditPage() {
 
   return (
     <Layout>
+      <Snackbar
+        open={isResult}
+        autoHideDuration={2000}
+        onClose={() => setIsResult(false)}
+      >
+        <Alert
+          onClose={() => setIsResult(false)}
+
+          severity="success"
+          variant="filled"
+
+        >
+          Данные успешно отправлены
+        </Alert>
+      </Snackbar>
+
+      <Backdrop open={isDataLoading} sx={{
+        zIndex: 1900
+      }}>
+        <CircularProgress sx={{
+          zIndex: 2000
+        }} />
+      </Backdrop>
+
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <ApplicationForm
           register={register}

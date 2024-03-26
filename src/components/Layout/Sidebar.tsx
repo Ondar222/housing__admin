@@ -18,6 +18,7 @@ const Sidebar: FC<SidebarT> = () => {
         <Drawer
             variant="permanent"
             anchor="left"
+            
             sx={{
                 width: drawerWidth,
             }}
