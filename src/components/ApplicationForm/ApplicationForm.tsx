@@ -1,4 +1,4 @@
-import { Box, FormControl, FormHelperText, FormLabel, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material"
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material"
 import { FC } from "react"
 import { ApplicationFormI, ApplicationIntention } from "../../types/Application"
 import { Controller } from "react-hook-form"

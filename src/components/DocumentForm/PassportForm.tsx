@@ -1,10 +1,9 @@
-import { Box, FormControl, MenuItem, Select, Stack, TextField, } from "@mui/material";
+import {  FormControl, MenuItem, Select, Stack, TextField, } from "@mui/material";
 import { FC } from "react";
 import { PassportFormI } from "../../types/Document";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Controller } from "react-hook-form";
 import { InputLabel } from "@mui/material";
-import dayjs from "dayjs";
 
 const PassportForm: FC<PassportFormI> = ({ register, prefix, control }) => {
 

@@ -1,9 +1,9 @@
-import { Box, Stack, Switch } from "@mui/material";
+import { Stack, Switch } from "@mui/material";
 import { FC } from "react";
 import { FormControlLabel } from "@mui/material";
 import { FamilyFormI } from "../../types/Family";
 
-const FamilyForm: FC<FamilyFormI> = ({ register, control }) => {
+const FamilyForm: FC<FamilyFormI> = ({ register}) => {
   return (
     <Stack direction={"column"} gap={2}>
       <FormControlLabel

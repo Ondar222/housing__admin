@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Stack } from "@mui/material";
+import { Typography, TextField, Stack } from "@mui/material";
 import { FC, useEffect } from "react";
 import { ParticipantFormI } from "../../types/Participant";
 import { SnilsForm } from "../DocumentForm";
