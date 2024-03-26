@@ -6,7 +6,7 @@ const AuthStore = createSlice({
         isAuth: false,
         access_token: "",
         refresh_token: "",
-        expires: 9000
+        expires: 9000,
     },
     reducers: {
         setCredentials: (state, action) => {

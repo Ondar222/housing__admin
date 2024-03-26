@@ -6,6 +6,7 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { AccountInfo } from "../Account/Account";
 import { drawerWidth } from "./consts";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../store/hooks/useAppDispatch";
 
 type SidebarT = {
     isOpen: boolean
@@ -13,12 +14,12 @@ type SidebarT = {
 }
 
 const Sidebar: FC<SidebarT> = () => {
-
+    const { name, surname } = useAppSelector((state) => state.user)
     return (
         <Drawer
             variant="permanent"
             anchor="left"
-            
+
             sx={{
                 width: drawerWidth,
             }}
@@ -47,7 +48,7 @@ const Sidebar: FC<SidebarT> = () => {
             </Stack>
 
             <Divider />
-            <AccountInfo name={"Фамилия И.О."} role={"Администратор"} avatar={"/img/avatar.png"} />
+            <AccountInfo name={`${surname} ${name}`} role={"Администратор"} avatar={"/img/avatar.png"} />
             <Divider />
 
             <List sx={{ marginLeft: "10px" }}>

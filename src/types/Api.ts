@@ -7,11 +7,3 @@ export type ApiResponse<T> = {
         filter_count: number
     }
 }
-
-
-
-export const API_HEADERS: AxiosRequestConfig["headers"] = {
-
-    Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`
-
-}

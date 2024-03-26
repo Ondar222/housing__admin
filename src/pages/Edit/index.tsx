@@ -36,6 +36,7 @@ export default function EditPage() {
   const [children, setChildren] = useState<Array<number> | undefined>(
     undefined
   );
+  const { access_token } = useAppSelector((state) => state.auth)
   const { register, unregister, handleSubmit, watch, control, reset } = useForm<any>({
     defaultValues: {
       family: {
@@ -117,13 +118,11 @@ export default function EditPage() {
       })
     }
 
-    console.log(queueName)
-    console.log(isLarge)
     setIsDataLoading(true)
     await axios
       .post(`${import.meta.env.VITE_API}/items/participant`, data, {
         headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`,
+          Authorization: `Bearer ${access_token}`,
         },
       })
       .then((res) => {

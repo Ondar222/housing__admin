@@ -1,10 +1,11 @@
 import { Button, Container, Stack, TextField, Typography } from '@mui/material'
 import axios from 'axios';
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppDispatch, } from '../../store/hooks/useAppDispatch';
+import { useAppDispatch, useAppSelector, } from '../../store/hooks/useAppDispatch';
 import { ApiResponse } from '../../types/Api';
 import { setCredentials } from '../../store/slices/auth';
 import { useNavigate } from 'react-router-dom';
+import { getUserData } from '../../store/slices/user/thunks';
 
 function AuthPage() {
     const dispatch = useAppDispatch()
@@ -12,15 +13,18 @@ function AuthPage() {
     const navigate = useNavigate()
 
     const onSubmit: SubmitHandler<{ email: string; password: string }> = async (values) => {
-        await axios.post<ApiResponse<{ email: string; password: string }>>(`${import.meta.env.VITE_API}/auth/login`, {
+        const credentials = await axios.post<ApiResponse<{ email: string; password: string }>>(`${import.meta.env.VITE_API}/auth/login`, {
             ...values
         })
-            .then((res) => {
-                console.log(res.data)
-                dispatch(setCredentials(res.data.data))
-                navigate('/edit')
-                return res
+            .then((res) => res.data.data)
+            .catch((e) => {
+                console.error(e)
             })
+
+        dispatch(setCredentials(credentials))
+
+        await dispatch(getUserData())
+        navigate('/edit')
     }
 
     return (

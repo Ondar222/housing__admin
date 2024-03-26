@@ -1,13 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios, { AxiosRequestConfig } from "axios"
 import { ApplicationT } from "../../../../types/Application"
-import { API_HEADERS, ApiResponse } from "../../../../types/Api"
+import { ApiResponse } from "../../../../types/Api"
 
 const getApplications = createAsyncThunk("application/getApplications",
-    async (params: AxiosRequestConfig["params"]) => {
+    async (params: AxiosRequestConfig["params"], { getState }) => {
         const data = await axios
             .get<ApiResponse<ApplicationT[]>>(`${import.meta.env.VITE_API}/items/application?fields=*.*.*`, {
-                headers: API_HEADERS,
+                headers: {
+                    //@ts-ignore
+                    Authorization: `Bearer ${getState().auth.access_token}`
+                },
                 params: params
             })
             .then((res) => {
@@ -23,10 +26,12 @@ const getApplications = createAsyncThunk("application/getApplications",
     })
 
 const getApplicationDetails = createAsyncThunk("application/getApplicationDetails",
-    async (id: number) => {
+    async (id: number, { getState }) => {
         const data = await axios
             .get<ApplicationT>(`${import.meta.env.VITE_API}/items/application/${id}`, {
-                headers: API_HEADERS
+                headers: {//@ts-ignore
+                    Authorization: `Bearer ${getState().auth.access_token}`
+                }
             })
             .then((res) => {
                 console.log(res)
