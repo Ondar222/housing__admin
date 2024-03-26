@@ -8,39 +8,45 @@ const ApplicantForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
   useEffect(() => { }, []);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Typography
+    <Stack direction={"column"} gap={4}>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        px={2}
+        alignItems={"center"}
         sx={{
-          fontWeight: "bold",
-          fontSize: "20px",
-          padding: "5px 10px",
           background: "#007AFF",
-          color: "#FFF",
-          height: "42px",
-        }}
-      >
-        Данные заявителя
-      </Typography>
+        }}>
 
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "20px" }}>
-        <TextField placeholder="Фамилия" {...register(`${prefix}.surname`)} />
-        <TextField placeholder="Имя" {...register(`${prefix}.name`)} />
-        <TextField placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
-        <TextField placeholder="Телефон" {...register(`${prefix}.phone`)} />
-        <TextField placeholder="Email" {...register(`${prefix}.email`)} />
-      </Box>
-
-      <Box sx={{ marginTop: "20px" }}>
-        <SnilsForm prefix={prefix} register={register} />
-      </Box>
-
-      <Stack>
-        <PassportForm
-          prefix={prefix}
-          register={register} 
-          control={control} />
+        <Typography
+          fontSize={20}
+          fontWeight={"bold"}
+          color={"white"}
+        >
+          Данные заявителя
+        </Typography>
       </Stack>
-    </Box>
+
+      <Stack direction={"row"} gap={4} width={500} justifyContent={"space-between"}>
+        <Stack direction={"column"} justifyContent={"space-between"} gap={2}>
+          <TextField label="Фамилия" placeholder="Фамилия" {...register(`${prefix}.surname`)} />
+          <TextField label="Имя" placeholder="Имя" {...register(`${prefix}.name`)} />
+          <TextField label="Отчество" placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
+        </Stack>
+        <Stack direction={"column"} gap={2}>
+          <TextField label="Телефон" placeholder="79001238899" {...register(`${prefix}.phone`)} />
+          <TextField label="Email" placeholder="example@mail.ru" {...register(`${prefix}.email`)} />
+          <SnilsForm prefix={prefix} register={register} />
+        </Stack>
+      </Stack>
+
+
+
+      <PassportForm
+        prefix={prefix}
+        register={register}
+        control={control} />
+    </Stack >
   );
 };
 

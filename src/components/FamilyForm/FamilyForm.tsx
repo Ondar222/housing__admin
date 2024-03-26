@@ -1,12 +1,11 @@
-import { Box, Switch } from "@mui/material";
+import { Box, Stack, Switch } from "@mui/material";
 import { FC } from "react";
 import { FormControlLabel } from "@mui/material";
 import { FamilyFormI } from "../../types/Family";
 
 const FamilyForm: FC<FamilyFormI> = ({ register, control }) => {
   return (
-    <Box>
-
+    <Stack direction={"column"} gap={2}>
       <FormControlLabel
         control={<Switch {...register("family.isMarried")} />}
         label="В браке"
@@ -20,7 +19,7 @@ const FamilyForm: FC<FamilyFormI> = ({ register, control }) => {
         control={<Switch {...register("family.isComplete")} />}
         label="Полная семья"
       />
-    </Box >
+    </Stack>
   );
 };
 

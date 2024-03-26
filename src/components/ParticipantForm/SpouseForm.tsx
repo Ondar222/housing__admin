@@ -12,22 +12,45 @@ const SpouseForm: FC<SpouseFormI> = ({ prefix, register, control }) => {
         gap: "20px"
       }}
     >
-      <Typography
-        sx={{ fontWeight: "bold", fontSize: "20px", padding: "5px 10px", background: "#007AFF", color: "#FFF", height: "42px" }}
-      >
-        Данные супруга(-ги)
-      </Typography>
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        px={2}
+        alignItems={"center"}
+        sx={{
+          background: "#007AFF",
+        }}>
 
-        <TextField placeholder="Фамилия" {...register(`${prefix}.surname`)} />
-        <TextField placeholder="Имя" {...register(`${prefix}.name`)} />
-        <TextField placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
-        <TextField placeholder="Телефон" {...register(`${prefix}.phone`)} />
-      </Box>
-      <Stack direction={"column"}>
-        <PassportForm prefix={prefix} register={register} control={control} />
-        <SnilsForm prefix={prefix} register={register} control={control} />
+        <Typography
+          fontSize={20}
+          fontWeight={"bold"}
+          color={"white"}
+        >
+          Данные супруги(-га)
+        </Typography>
       </Stack>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        gap={4}
+        width={500}>
+        <Stack direction={"column"} gap={2} width={"50%"}>
+          <TextField label="Фамилия" placeholder="Фамилия" {...register(`${prefix}.surname`)} />
+          <TextField label="Имя" placeholder="Имя" {...register(`${prefix}.name`)} />
+          <TextField label="Отчество" placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
+        </Stack>
+
+        <Stack direction={"column"} gap={2}>
+          <TextField label="Адрес электронной почты" placeholder="example@mail.ru" {...register(`${prefix}.email`)} />
+          <TextField label="Телефон" placeholder="Телефон" {...register(`${prefix}.phone`)} />
+          <SnilsForm prefix={prefix} register={register} control={control} />
+        </Stack>
+      </Stack>
+
+
+      <PassportForm prefix={prefix} register={register} control={control} />
+
+
     </Box>
   );
 };

@@ -1,5 +1,5 @@
-import {  Divider, Drawer,Link, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
-import { FC} from "react"
+import { Divider, Drawer, Link, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
+import { FC } from "react"
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -12,13 +12,11 @@ type SidebarT = {
 }
 
 const Sidebar: FC<SidebarT> = () => {
- 
+
     return (
         <Drawer
             variant="permanent"
             anchor="left"
-            // open={isOpen}
-            // onClose={handleClose}
             sx={{
                 width: drawerWidth,
             }}
@@ -61,13 +59,13 @@ const Sidebar: FC<SidebarT> = () => {
                     <ListItemIcon>
                         <BorderColorIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Текущий список" />
+                    <ListItemText primary="Список заявок" />
                 </ListItem>
                 <ListItem component={Link} href="/edit">
                     <ListItemIcon>
                         <PlaylistAddIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Редактировать" />
+                    <ListItemText primary="Добавить данные" />
                 </ListItem>
             </List>
         </Drawer>

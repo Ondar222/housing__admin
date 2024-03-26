@@ -4,7 +4,7 @@ import {
   ChildForm,
   SpouseForm,
 } from "../../components/ParticipantForm";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FamilyForm } from "../../components/FamilyForm";
 import { Participant, ParticipantFormData, ParticipantType } from "../../types/Participant";
@@ -168,18 +168,22 @@ export default function EditPage() {
           control={control}
           isLoading={isLoading}
           programs={housing_programs.data}
-
+          isLarge={isLarge}
         />
         <ApplicantForm
           register={register}
           prefix={ParticipantType.APPLICANT}
           control={control}
         />
-        <FamilyForm
-          register={register}
-          prefix={"family"}
-          control={control}
-        />
+        <Box>
+          <Typography>Данные семьи</Typography>
+          <FamilyForm
+            register={register}
+            prefix={"family"}
+            control={control}
+          />
+        </Box>
+
 
         {isMarried && (
           <SpouseForm
@@ -189,17 +193,7 @@ export default function EditPage() {
           />
         )}
 
-        <Button
-          onClick={addChild}
-          sx={{
-            display: "flex",
-            background: '#007AFF',
-            color: "#FFF",
-            width: "160px"
-          }}
-        >
-          Добавить ребенка
-        </Button>
+
         {
           children != undefined &&
           children.length > 0 &&
@@ -216,6 +210,17 @@ export default function EditPage() {
             );
           })
         }
+        <Button
+          onClick={addChild}
+          sx={{
+            display: "flex",
+            background: '#007AFF',
+            color: "#FFF",
+            width: "160px"
+          }}
+        >
+          Добавить ребенка
+        </Button>
 
         <Button sx={{
           display: "flex",

@@ -36,6 +36,7 @@ export type ApplicationT = {
 export interface ApplicationFormI extends IAppForm {
     programs: HousingProgramList
     isLoading: boolean
+    isLarge: boolean
 }
 
 export type ApplicationStoreT = {

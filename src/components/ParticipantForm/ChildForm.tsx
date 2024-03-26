@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button, Stack } from "@mui/material";
+import { Box, Typography, TextField, Button, Stack, IconButton } from "@mui/material";
 import { FC, useEffect } from "react";
 import { ChildFormI } from "../../types/Participant";
 import { PassportForm } from "../DocumentForm";
@@ -15,60 +15,82 @@ const ChildForm: FC<ChildFormI> = ({
   useEffect(() => { }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px"
-      }}
+    <Stack
+      direction={"column"}
+      gap={5}
     >
-      <Typography
+
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        px={2}
+        alignItems={"center"}
         sx={{
-          fontWeight: "bold",
-          fontSize: "20px",
-          padding: "5px 10px",
           background: "#007AFF",
-          color: "#FFF",
-          height: "42px",
-        }}
-      >
-        Данные ребенка
-      </Typography>
+        }}>
 
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "20px" }}>
-        <TextField
-          placeholder="Фамилия"
-          {...register(`${prefix}[${childIndex}].surname`)}
-        />
-        <TextField
-          placeholder="Имя"
-          {...register(`${prefix}[${childIndex}].name`)}
-        />
-        <TextField
-          placeholder="Отчество"
-          {...register(`${prefix}[${childIndex}].patronymic`)}
-        />
-      </Box>
+        <Typography
+          fontSize={20}
+          fontWeight={"bold"}
+          color={"white"}
+        >
+          Данные ребенка
+        </Typography>
 
-      <Stack direction={"column"} gap={5}>
-        <SnilsForm
-          prefix={`${prefix}[${childIndex}]`}
-          register={register}
-          control={control}
-        />
+        <IconButton onClick={() => onDelete(childIndex)} sx={{ padding: 0 }}>
+          <DeleteIcon htmlColor="white" />
+        </IconButton>
+      </Stack>
+
+      <Stack direction={"row"} gap={4} width={500}>
+        <Stack
+          direction={"column"}
+          justifyContent={"space-between"}
+          gap={2}
+          sx={{
+            width: "100%"
+          }}
+        >
+          <TextField
+            label="Фамилия"
+            placeholder="Фамилия"
+            {...register(`${prefix}[${childIndex}].surname`)}
+
+          />
+          <TextField
+            label="Имя"
+            placeholder="Имя"
+            {...register(`${prefix}[${childIndex}].name`)}
+
+          />
+          <TextField
+            label="Отчество"
+            placeholder="Отчество"
+            {...register(`${prefix}[${childIndex}].patronymic`)}
+
+          />
+        </Stack>
+        <Stack sx={{
+          width: "100%"
+        }}>
+          <SnilsForm
+            prefix={`${prefix}[${childIndex}]`}
+            register={register}
+            control={control}
+          />
+        </Stack>
+      </Stack>
+
+
+      <Stack direction={"column"} gap={4}>
         <PassportForm
           prefix={`${prefix}[${childIndex}]`}
           register={register}
           control={control}
         />
       </Stack>
-      <Button
-        sx={{ display: "block", flexDirection: "column", justifyContent: "center", background: "#007AFF", color: "#FFF", height: "40px", width: '40px' }}
-        onClick={() => onDelete(childIndex)}
-      >
-        <DeleteIcon />
-      </Button>
-    </Box>
+
+    </Stack >
   );
 };
 
