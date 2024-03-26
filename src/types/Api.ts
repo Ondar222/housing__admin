@@ -1,5 +1,3 @@
-import { AxiosRequestConfig } from "axios"
-
 export type ApiResponse<T> = {
     data: T,
     meta?: {
