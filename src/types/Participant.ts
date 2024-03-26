@@ -24,7 +24,8 @@ export interface ParticipantFormData {
   surname: string;
   name: string;
   patronymic: string;
-
+  phone: string
+  email: string
   snils: Array<Snils>
   identification_document: Array<IdentificationDocument>
 

@@ -36,13 +36,18 @@ export default function EditPage() {
   );
   const { register, unregister, handleSubmit, watch, control } = useForm<any>({
     defaultValues: {
+      family: {
+        isMarried: false,
+        isLarge: false,
+        isComplete: false
+      },
       application: {
         housing_program: 1
       }
     }
   });
   const isMarried: boolean = watch("family.isMarried");
-  const isLarge: boolean = watch("application.queue")
+  const isLarge: boolean = watch("family.isLarge")
 
   useEffect(() => {
     dispatch(getHousingProgramList())
@@ -53,12 +58,15 @@ export default function EditPage() {
   }, [isMarried]);
 
   const onSubmit: SubmitHandler<EditPageForm> = async (values) => {
-    const queueName = isLarge ? "large_queue": "base_queue"
+    let queueName = isLarge === true ? "large_queue" : "base_queue"
 
     const data: ParticipantFormData = {
       surname: values.applicant.surname,
       name: values.applicant.name,
       patronymic: values.applicant.patronymic,
+      phone: values.applicant.phone,
+      email: values.applicant.email,
+
       identification_document: [{
         ...values.applicant.identification_document
       }],
@@ -72,6 +80,7 @@ export default function EditPage() {
         is_large: values.family.isLarge,
         family: [],
       },
+
       application: [{
         housing_program: values.application.housing_program,
         intention: values.application.intention,
@@ -84,7 +93,6 @@ export default function EditPage() {
 
     if (values.spouse) {
       const { identification_document, snils, ...spouseData } = values.spouse
-      console.log(spouseData)
       data.family.family.push({
         ...spouseData,
         identification_document: [{ ...identification_document }],
@@ -107,10 +115,8 @@ export default function EditPage() {
       })
     }
 
-
-
-    console.log(values)
-    console.log(data);
+    console.log(queueName)
+    console.log(isLarge)
 
     await axios
       .post(`${import.meta.env.VITE_API}/items/participant`, data, {
@@ -172,6 +178,7 @@ export default function EditPage() {
         <FamilyForm
           register={register}
           prefix={"family"}
+          control={control}
         />
 
         {isMarried && (

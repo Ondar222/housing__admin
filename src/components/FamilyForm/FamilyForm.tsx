@@ -3,13 +3,15 @@ import { FC } from "react";
 import { FormControlLabel } from "@mui/material";
 import { FamilyFormI } from "../../types/Family";
 
-const FamilyForm: FC<FamilyFormI> = ({ register }) => {
+const FamilyForm: FC<FamilyFormI> = ({ register, control }) => {
   return (
     <Box>
+
       <FormControlLabel
         control={<Switch {...register("family.isMarried")} />}
         label="В браке"
       />
+
       <FormControlLabel
         control={<Switch {...register("family.isLarge")} />}
         label="Многодетная семья"
@@ -18,7 +20,7 @@ const FamilyForm: FC<FamilyFormI> = ({ register }) => {
         control={<Switch {...register("family.isComplete")} />}
         label="Полная семья"
       />
-    </Box>
+    </Box >
   );
 };
 
