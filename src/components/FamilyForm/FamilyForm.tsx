@@ -7,16 +7,16 @@ const FamilyForm: FC<FamilyFormI> = ({ register}) => {
   return (
     <Stack direction={"column"} gap={2}>
       <FormControlLabel
-        control={<Switch {...register("family.isMarried")} />}
+        control={<Switch {...register("family.is_married")} />}
         label="В браке"
       />
 
       <FormControlLabel
-        control={<Switch {...register("family.isLarge")} />}
+        control={<Switch {...register("family.is_large")} />}
         label="Многодетная семья"
       />
       <FormControlLabel
-        control={<Switch {...register("family.isComplete")} />}
+        control={<Switch {...register("family.is_complete")} />}
         label="Полная семья"
       />
     </Stack>

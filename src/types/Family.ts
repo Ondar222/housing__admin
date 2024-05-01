@@ -6,5 +6,5 @@ export type Family = {
     isComplete: boolean
 }
 
-export interface FamilyFormI extends IAppForm { }
+export interface FamilyFormI extends IAppForm<{ [prefix: string]: Family }> { }
 

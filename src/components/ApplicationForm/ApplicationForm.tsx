@@ -3,7 +3,7 @@ import { FC } from "react"
 import { ApplicationFormI, ApplicationIntention } from "../../types/Application"
 import { Controller } from "react-hook-form"
 
-const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, control, isLarge }) => {
+const ApplicationForm: FC<ApplicationFormI> = ({ prefix, register, programs, control, isLarge }) => {
     return (
         <Stack
             direction={"column"}
@@ -26,7 +26,7 @@ const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, control, is
                 <FormControl>
                     <InputLabel>Жилищная программа</InputLabel>
                     <Controller
-                        name={`application.housing_program`}
+                        name={`${prefix}.housing_program`}
                         control={control}
                         render={({ field }) => (
                             <Select
@@ -53,7 +53,7 @@ const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, control, is
                         label="Назначение"
                         defaultValue={"mortgage"}
                         placeholder="Назначение"
-                        {...register('application.intention')}
+                        {...register(`${prefix}.intention`)}
                     >
                         <MenuItem value={ApplicationIntention.MORTGAGE}>Ипотека</MenuItem>
                         <MenuItem value={ApplicationIntention.CONSTRUCTION}>Строительство</MenuItem>
@@ -64,7 +64,7 @@ const ApplicationForm: FC<ApplicationFormI> = ({ register, programs, control, is
                     <TextField
                         label="Номер в очереди"
                         placeholder="Номер в очереди"
-                        {...register("application.queue")} />
+                        {...register(`${prefix}.queue`)} />
                     <FormHelperText>
                         {
                             isLarge ?

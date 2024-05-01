@@ -1,30 +1,59 @@
 import { Button, Container, Stack, TextField, Typography } from '@mui/material'
-import axios from 'axios';
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppDispatch } from '../../store/hooks/useAppDispatch';
-import { ApiResponse } from '../../types/Api';
-import { setCredentials } from '../../store/slices/auth';
-import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/useAppDispatch';
+import { getCredentials, logout } from '../../store/slices/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../store/slices/user/thunks';
+import { useEffect } from 'react';
+import { authLogin } from '../../store/slices/auth/thunks';
 
 function AuthPage() {
     const dispatch = useAppDispatch()
+    const { isAuth, access_token } = useAppSelector((state) => state.auth)
     const { register, handleSubmit } = useForm<{ email: string; password: string }>()
     const navigate = useNavigate()
 
     const onSubmit: SubmitHandler<{ email: string; password: string }> = async (values) => {
-        const credentials = await axios.post<ApiResponse<{ email: string; password: string }>>(`${import.meta.env.VITE_API}/auth/login`, {
+        await dispatch(authLogin({
             ...values
+        })).then(() => {
+            navigate('/application/+')
+        }).catch((e) => {
+            throw new Error(e)
         })
-            .then((res) => res.data.data)
-            .catch((e) => {
-                console.error(e)
-            })
+    }
 
-        dispatch(setCredentials(credentials))
+    const onLogoutButtonClick = () => {
+        dispatch(logout())
+    }
 
-        await dispatch(getUserData())
-        navigate('/edit')
+    useEffect(() => {
+        try {
+            dispatch(getCredentials())
+            dispatch(getUserData(access_token))
+        }
+        catch (e) {
+            console.clear()
+        }
+    }, [])
+
+    if (isAuth) {
+        return (
+            <Container>
+                <Stack
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    sx={{
+                        height: "100vh"
+                    }}>
+                    <Typography>Уже выполнен вход</Typography>
+                    <Link to={"/application/+"}>
+                        Войти
+                    </Link>
+                    <Button onClick={onLogoutButtonClick}>Войти в другой аккаунт</Button>
+                </Stack>
+            </Container>
+        )
     }
 
     return (

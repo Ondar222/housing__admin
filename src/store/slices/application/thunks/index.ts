@@ -27,22 +27,30 @@ const getApplications = createAsyncThunk("application/getApplications",
 
 const getApplicationDetails = createAsyncThunk("application/getApplicationDetails",
     async (id: number, { getState }) => {
-        const data = await axios
-            .get<ApplicationT>(`${import.meta.env.VITE_API}/items/application/${id}`, {
+        const applicationDetails = await axios
+            .get<ApiResponse<ApplicationT>>(`${import.meta.env.VITE_API}/items/application/${id}`, {
                 headers: {//@ts-ignore
                     Authorization: `Bearer ${getState().auth.access_token}`
                 }
             })
             .then((res) => {
                 console.log(res)
-                return res
+                return res.data.data
             })
             .catch((e) => {
                 console.error(e)
                 throw new Error()
             })
 
-        return data.data
+        const applicantFamilyData = await axios.
+            get<ApiResponse<any>>(`${import.meta.env.VITE_API}/items/family/${applicationDetails}`)
+
+
+        const EditableApplication = {
+
+        }
+
+        return applicationDetails
     })
 
 export { getApplications, getApplicationDetails }

@@ -23,8 +23,8 @@ interface IdentificationDocument {
     issued_by: string
 }
 
-interface PassportFormI extends IAppForm {
-    
+interface PassportFormI extends IAppForm<{ [prefix: string]: IdentificationDocument }> {
+
 }
 
 export type { IdentificationDocument, Snils, Document, PassportFormI }

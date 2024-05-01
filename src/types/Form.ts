@@ -1,9 +1,9 @@
 import { UseFormRegister, FieldValues, Control } from "react-hook-form"
 
-interface IAppForm {
+interface IAppForm<T extends FieldValues> {
     prefix: string
-    control?: Control<FieldValues>
-    register: UseFormRegister<FieldValues>
+    control?: Control<T>
+    register: UseFormRegister<T>
 }
 
 export type { IAppForm }

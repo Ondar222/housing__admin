@@ -7,7 +7,8 @@ import Router from './app/router/index.tsx'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Provider } from "react-redux"
-import { store } from './store/index.ts'
+import { persistor, store } from './store/index.ts'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const theme = createTheme({
   palette: {
@@ -41,11 +42,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <CssBaseline />
         <BrowserRouter basename='/'>
           <Provider store={store} >
-            <Router />
+            <PersistGate loading={null} persistor={persistor}>
+              <Router />
+            </PersistGate>
           </Provider>
         </BrowserRouter>
       </ThemeProvider>
     </LocalizationProvider>
   </React.StrictMode >
-
 )

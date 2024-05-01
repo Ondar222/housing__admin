@@ -58,13 +58,13 @@ const Sidebar: FC<SidebarT> = () => {
                     </ListItemIcon>
                     <ListItemText primary="Аналитика" />
                 </ListItem>
-                <ListItem component={Link} to="/list">
+                <ListItem component={Link} to="/application">
                     <ListItemIcon>
                         <BorderColorIcon />
                     </ListItemIcon>
                     <ListItemText primary="Список заявок" />
                 </ListItem>
-                <ListItem component={Link} to="/edit">
+                <ListItem component={Link} to="/application/+">
                     <ListItemIcon>
                         <PlaylistAddIcon />
                     </ListItemIcon>

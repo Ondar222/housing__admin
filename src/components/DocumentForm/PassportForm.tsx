@@ -1,11 +1,11 @@
 import {  FormControl, MenuItem, Select, Stack, TextField, } from "@mui/material";
 import { FC } from "react";
-import { PassportFormI } from "../../types/Document";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Controller } from "react-hook-form";
 import { InputLabel } from "@mui/material";
+import { ParticipantFormI } from "../../types/Participant";
 
-const PassportForm: FC<PassportFormI> = ({ register, prefix, control }) => {
+const PassportForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
 
   return (
     <Stack direction={"column"} gap={4} maxWidth={500}>
@@ -30,7 +30,6 @@ const PassportForm: FC<PassportFormI> = ({ register, prefix, control }) => {
         <TextField
           label="Номер"
           placeholder="000000"
-
           {...register(`${prefix}.identification_document.number`)}
           sx={{
             width: "50%"
