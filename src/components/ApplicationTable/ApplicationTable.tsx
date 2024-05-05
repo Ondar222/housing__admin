@@ -41,7 +41,7 @@ const ApplicationTable: FC<ApplicationTableT> = ({
   onFilter,
 }) => {
   const [filter, setFilter] = useState<Array<[string, string]>>();
-  console.log(filter)
+  console.log(filter);
 
   const ApplicationView = {
     false: (
@@ -130,11 +130,8 @@ const ApplicationTable: FC<ApplicationTableT> = ({
 
               console.log(name, value);
 
-
               if (value === "all") {
-                setFilter((prev) =>
-                  prev?.filter((item) => item[0] != name)
-                );
+                setFilter((prev) => prev?.filter((item) => item[0] != name));
                 onFilter({ name, value: null });
               } else {
                 setFilter((prev) => {
