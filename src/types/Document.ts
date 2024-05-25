@@ -14,6 +14,7 @@ interface Snils {
 }
 
 interface IdentificationDocument {
+    passport: string
     type: IdentificationDocumentType
     series: string
     number: string
@@ -25,6 +26,8 @@ interface IdentificationDocument {
 
 interface PassportFormI extends IAppForm<{ [prefix: string]: IdentificationDocument }> {
 
+interface PassportFormI extends IAppForm {
+    value?: IdentificationDocument
 }
 
 export type { IdentificationDocument, Snils, Document, PassportFormI }

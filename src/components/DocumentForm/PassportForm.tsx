@@ -1,4 +1,4 @@
-import {  FormControl, MenuItem, Select, Stack, TextField, } from "@mui/material";
+import { FormControl, MenuItem, Select, Stack, TextField, } from "@mui/material";
 import { FC } from "react";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Controller } from "react-hook-form";
@@ -7,13 +7,14 @@ import { ParticipantFormI } from "../../types/Participant";
 
 const PassportForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
 
+const PassportForm: FC<PassportFormI> = ({ register, prefix, control, value }) => {
   return (
-    <Stack direction={"column"} gap={4} maxWidth={500}>
+    <Stack direction={"column"} gap={4} className="subform">
       <FormControl>
         <InputLabel>
           Тип документа
         </InputLabel>
-        <Select label="Тип документа" {...register(`${prefix}.identification_document.type`)}>
+        <Select label="Тип документа" defaultValue={value?.type} {...register(`${prefix}.identification_document.type`)}>
           <MenuItem value={"passport"}>Паспорт</MenuItem>
           <MenuItem value={"certificate"}>Свидетельство о рождении</MenuItem>
         </Select>
@@ -21,9 +22,10 @@ const PassportForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
 
       <Stack direction={"row"} gap={4} justifyContent={"start"} width={"100%"}>
         <TextField
-          label="Серия"
-          placeholder="0000"
-          {...register(`${prefix}.identification_document.series`)}
+          label="Серия и номер"
+          placeholder="0000000000"
+          defaultValue={value?.passport}
+          {...register(`${prefix}.identification_document.passport`)}
           sx={{
             width: "50%"
           }} />
@@ -34,6 +36,21 @@ const PassportForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
           sx={{
             width: "50%"
           }}
+
+        <Controller
+          control={control}
+          name={`${prefix}.identification_document.birthdate`}
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              // defaultValue={}
+              label="Дата рождения"
+              onChange={(date: Date | null) => field.onChange(date)}
+              sx={{
+                width: "50%"
+              }}
+            />
+          )}
         />
       </Stack>
 
@@ -45,6 +62,7 @@ const PassportForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
         <TextField
           label="Код подразделения"
           placeholder="111-000"
+          defaultValue={value?.unit_code}
           {...register(`${prefix}.identification_document.unit_code`)}
           sx={{
             width: "50%"
@@ -67,9 +85,12 @@ const PassportForm: FC<ParticipantFormI> = ({ register, prefix, control }) => {
           )}
         />
       </Stack>
+
       <TextField
         label="Выдан"
+
         placeholder="Отделом ОФМС России по Республике Тыва в г. Кызыле"
+        defaultValue={value?.issued_by}
         {...register(`${prefix}.identification_document.issued_by`)}
       />
     </Stack>

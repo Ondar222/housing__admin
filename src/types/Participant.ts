@@ -11,9 +11,12 @@ export type Participant = {
   phone: string
   email: string
   snils: Snils
-  identification_document: IdentificationDocument,
+  identification_document: IdentificationDocument[],
   personal_docs: Array<any>,
   application: number
+
+  children?: Array<Participant>
+  spouse: Participant
 
   user_created: string
   date_created: string
@@ -25,8 +28,8 @@ export interface ParticipantFormData {
   surname: string;
   name: string;
   patronymic: string;
-  phone: string
-  email: string
+  phone?: string
+  email?: string
   snils: Array<Snils>
   identification_document: Array<IdentificationDocument>
 

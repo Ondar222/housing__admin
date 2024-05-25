@@ -11,6 +11,7 @@ const ChildForm: FC<ChildFormI> = ({
   childIndex,
   onDelete,
   control,
+  applicant
 }) => {
   useEffect(() => { }, []);
 
@@ -19,7 +20,6 @@ const ChildForm: FC<ChildFormI> = ({
       direction={"column"}
       gap={5}
     >
-
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
@@ -42,7 +42,7 @@ const ChildForm: FC<ChildFormI> = ({
         </IconButton>
       </Stack>
 
-      <Stack direction={"row"} gap={4} width={500}>
+      <Stack direction={"row"} gap={4} className="subform">
         <Stack
           direction={"column"}
           justifyContent={"space-between"}
@@ -54,29 +54,27 @@ const ChildForm: FC<ChildFormI> = ({
           <TextField
             label="Фамилия"
             placeholder="Фамилия"
+            defaultValue={applicant?.surname}
             {...register(`${prefix}[${childIndex}].surname`)}
 
           />
           <TextField
             label="Имя"
             placeholder="Имя"
+            defaultValue={applicant?.name}
             {...register(`${prefix}[${childIndex}].name`)}
 
           />
-          <TextField
-            label="Отчество"
-            placeholder="Отчество"
-            {...register(`${prefix}[${childIndex}].patronymic`)}
 
-          />
         </Stack>
         <Stack sx={{
           width: "100%"
         }}>
-          <SnilsForm
-            prefix={`${prefix}[${childIndex}]`}
-            register={register}
-            control={control}
+          <TextField
+            label="Отчество"
+            placeholder="Отчество"
+            defaultValue={applicant?.patronymic}
+            {...register(`${prefix}[${childIndex}].patronymic`)}
           />
         </Stack>
       </Stack>
@@ -84,6 +82,7 @@ const ChildForm: FC<ChildFormI> = ({
 
       <Stack direction={"column"} gap={4}>
         <PassportForm
+        value={applicant?.identification_document[0]}
           prefix={`${prefix}[${childIndex}]`}
           register={register}
           control={control}

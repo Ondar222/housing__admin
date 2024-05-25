@@ -5,7 +5,7 @@ import { FamilyFormI } from "../../types/Family";
 
 const FamilyForm: FC<FamilyFormI> = ({ register}) => {
   return (
-    <Stack direction={"column"} gap={2}>
+    <Stack direction={"row"} gap={2}>
       <FormControlLabel
         control={<Switch {...register("family.is_married")} />}
         label="В браке"

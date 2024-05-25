@@ -9,6 +9,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Provider } from "react-redux"
 import { persistor, store } from './store/index.ts'
 import { PersistGate } from 'redux-persist/integration/react'
+import { AuthProvider } from './providers/auth/index.ts'
+import ErrorBoundary from './providers/errorBoundary/index.tsx'
+import HttpProvider from './providers/http/index.tsx'
+import { AccountProvider } from './providers/account/index.tsx'
 
 const theme = createTheme({
   palette: {
@@ -49,5 +53,22 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </BrowserRouter>
       </ThemeProvider>
     </LocalizationProvider>
+    <ErrorBoundary>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter basename='/'>
+            <AuthProvider>
+              <HttpProvider>
+                <AccountProvider>
+                  <Router />
+                </AccountProvider>
+              </HttpProvider>
+            </AuthProvider>
+          </BrowserRouter>
+        </ThemeProvider>
+      </LocalizationProvider>
+    </ErrorBoundary>
+
   </React.StrictMode >
 )

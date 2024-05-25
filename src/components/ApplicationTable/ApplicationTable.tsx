@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import {
   Chip,
+  IconButton,
   MenuItem,
   Skeleton,
   Stack,
@@ -16,6 +17,8 @@ import {
 } from "@mui/material";
 import { FC, useState } from "react";
 import { ApplicationTableT } from "../../types/Application";
+import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from "react-router-dom";
 
 const status = [
   {
@@ -42,6 +45,7 @@ const ApplicationTable: FC<ApplicationTableT> = ({
 }) => {
   const [filter, setFilter] = useState<Array<[string, string]>>();
   console.log(filter);
+  const navigate = useNavigate()
 
   const ApplicationView = {
     false: (
@@ -83,6 +87,9 @@ const ApplicationTable: FC<ApplicationTableT> = ({
                       width: "100%",
                     }}
                   />
+                  <IconButton onClick={() => navigate(`/application/${item.id}`)}>
+                    <EditIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

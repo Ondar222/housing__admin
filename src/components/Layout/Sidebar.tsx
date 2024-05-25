@@ -7,6 +7,7 @@ import { AccountInfo } from "../Account/Account";
 import { drawerWidth } from "./consts";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks/useAppDispatch";
+import { useAccount } from "../../providers/account";
 
 type SidebarT = {
     isOpen: boolean
@@ -14,7 +15,7 @@ type SidebarT = {
 }
 
 const Sidebar: FC<SidebarT> = () => {
-    const { name, surname } = useAppSelector((state) => state.user)
+    const { name, surname, avatar } = useAccount()
     return (
         <Drawer
             variant="permanent"
@@ -48,7 +49,10 @@ const Sidebar: FC<SidebarT> = () => {
             </Stack>
 
             <Divider />
-            <AccountInfo name={`${surname} ${name}`} role={"Администратор"} avatar={"/img/avatar.png"} />
+            <AccountInfo
+                name={`${surname} ${name}`}
+                role={"Администратор"}
+                avatar={avatar} />
             <Divider />
 
             <List sx={{ marginLeft: "10px" }}>

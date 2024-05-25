@@ -6,10 +6,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../store/slices/user/thunks';
 import { useEffect } from 'react';
 import { authLogin } from '../../store/slices/auth/thunks';
+import { Link, useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { useAuth } from '../../providers/auth/auth';
 
 function AuthPage() {
     const dispatch = useAppDispatch()
     const { isAuth, access_token } = useAppSelector((state) => state.auth)
+const AuthPage: FC = () => {
+    const { isAuth, logout, login } = useAuth()
     const { register, handleSubmit } = useForm<{ email: string; password: string }>()
     const navigate = useNavigate()
 
@@ -54,6 +59,32 @@ function AuthPage() {
                 </Stack>
             </Container>
         )
+        await login(values.email, values.password).then(() => {
+            navigate('/application/+')
+        })
+    }
+
+    const onLogoutButtonClick = () => {
+        logout()
+    }
+
+    if (isAuth) {
+        return (
+            <Container>
+                <Stack
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    sx={{
+                        height: "100vh"
+                    }}>
+                    <Typography>Уже выполнен вход</Typography>
+                    <Link to={"/application/+"}>
+                        Войти
+                    </Link>
+                    <Button onClick={onLogoutButtonClick}>Войти в другой аккаунт</Button>
+                </Stack>
+            </Container>
+        )
     }
 
     return (
@@ -73,7 +104,6 @@ function AuthPage() {
                     </Stack>
                 </form>
             </Stack>
-
         </Container>
     )
 }

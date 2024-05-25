@@ -52,6 +52,10 @@ export type ApplicationSecondLevel = {
 }
 
 
+type Queue = {
+    queue: number
+}
+
 export type ApplicationT = {
     id: number
     status: ApplicationStatus
@@ -62,6 +66,9 @@ export type ApplicationT = {
     },
     applicant: Participant
     queue: number
+    large_queue?: Queue,
+    base_queue?: Queue,
+    poor_queue?: Queue
 
     date_created?: string
     date_updated?: string
@@ -74,6 +81,8 @@ export type ApplicationFormFields = {
 }
 
 export interface ApplicationFormI extends IAppForm<{ [prefix: string]: ApplicationT }> {
+export interface ApplicationFormI extends IAppForm {
+    application?: ApplicationT,
     programs: HousingProgramList
     isLoading: boolean
     isLarge: boolean

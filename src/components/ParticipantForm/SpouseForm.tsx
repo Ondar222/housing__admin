@@ -1,9 +1,9 @@
 import { Box, Typography, TextField, Stack } from "@mui/material";
 import { FC } from "react";
 import { SpouseFormI } from "../../types/Participant";
-import { PassportForm, SnilsForm } from "../DocumentForm";
+import { PassportForm } from "../DocumentForm";
 
-const SpouseForm: FC<SpouseFormI> = ({ prefix, register, control }) => {
+const SpouseForm: FC<SpouseFormI> = ({ prefix, register, control, applicant }) => {
   return (
     <Box
       sx={{
@@ -33,24 +33,35 @@ const SpouseForm: FC<SpouseFormI> = ({ prefix, register, control }) => {
         direction={"row"}
         justifyContent={"space-between"}
         gap={4}
-        width={500}>
-        <Stack direction={"column"} gap={2} width={"50%"}>
+        className="subform">
+        <Stack direction={"column"} gap={2} sx={{
+          width: "100%"
+        }}>
           <TextField label="Фамилия" placeholder="Фамилия" {...register(`${prefix}.surname`)} />
           <TextField label="Имя" placeholder="Имя" {...register(`${prefix}.name`)} />
-          <TextField label="Отчество" placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
+
         </Stack>
 
-        <Stack direction={"column"} gap={2}>
-          <TextField label="Адрес электронной почты" placeholder="example@mail.ru" {...register(`${prefix}.email`)} />
-          <TextField label="Телефон" placeholder="Телефон" {...register(`${prefix}.phone`)} />
-          <SnilsForm prefix={prefix} register={register} control={control} />
+        <Stack direction={"column"} gap={2}
+          sx={{
+            width: "100%"
+          }}>
+          <TextField label="Отчество" placeholder="Отчество" {...register(`${prefix}.patronymic`)} />
+          <TextField
+            label="Адрес электронной почты"
+            placeholder="example@mail.ru"
+            {...register(`${prefix}.email`)}
+          />
         </Stack>
       </Stack>
 
 
-      <PassportForm prefix={prefix} register={register} control={control} />
-
-
+      <PassportForm
+        value={applicant?.identification_document[0]}
+        prefix={prefix}
+        register={register}
+        control={control}
+      />
     </Box>
   );
 };
